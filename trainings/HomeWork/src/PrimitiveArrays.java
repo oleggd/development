@@ -22,6 +22,9 @@ public class PrimitiveArrays {
                 {75, 76, 77, 78, 79}
         };
 
+        char [] charArray1 = {'A','B','C','D','E','F','G','H','D','E','G','K'};
+        char [] charArray2 = {'D','E','G'};
+
         String separator = "--------------------------------------------------------------";
 
         Scanner scanner = new Scanner(System.in);
@@ -34,44 +37,44 @@ public class PrimitiveArrays {
         System.out.println("Enter number to search in array from start");
         printArray(intArray);
         System.out.println("Enter number to search in array from start");
-        //String str = scanner.nextLine();
-        //searchValue = Integer.parseInt(str);
-        //System.out.println("Position value " + searchValue + " in array from start: " + intInIntArrayStart(intArray, searchValue));
+        String str = scanner.nextLine();
+        searchValue = Integer.parseInt(str);
+        System.out.println("Position value " + searchValue + " in array from start: " + intInIntArrayStart(intArray, searchValue));
         //-- task 3
         System.out.println(separator);
         System.out.println("Enter number to search in array from end");
-        //str = scanner.nextLine();
-        //searchValue = Integer.parseInt(str);
-        //System.out.println("Position value " + searchValue + " in array from end: " + intInIntArrayEnd(intArray, searchValue));
+        str = scanner.nextLine();
+        searchValue = Integer.parseInt(str);
+        System.out.println("Position value " + searchValue + " in array from end: " + intInIntArrayEnd(intArray, searchValue));
         //-- task 5
         System.out.println(separator);
         System.out.println("Enter number to search 0 mod in array");
-        //str = scanner.nextLine();
-        //System.out.println("------");
-        //searchValue = Integer.parseInt(str);
-        //System.out.println("Values in array  for which  mod(" + searchValue + ")  = 0  : ");
-        //intModValue(intArray, searchValue);
+        str = scanner.nextLine();
+        System.out.println("------");
+        searchValue = Integer.parseInt(str);
+        System.out.println("Values in array  for which  mod(" + searchValue + ")  = 0  : ");
+        intModValue(intArray, searchValue);
         //-- task 6
         System.out.println(separator);
         System.out.println("Sort array :");
         printArray(intArray);
-        //System.out.println("------");
-        //System.out.println("Sorted array : ");
-        //printArray(sortArray(intArray));
+        System.out.println("------");
+        System.out.println("Sorted array : ");
+        printArray(sortArray(intArray));
         // -- task 7
         System.out.println(separator);
         System.out.println("Are there any duplicates in array :");
-       // printByteArray(byteArray);
-       // System.out.println("Result : " + duplicatedBytesArray(byteArray));
+        printByteArray(byteArray);
+        System.out.println("Result : " + duplicatedBytesArray(byteArray));
         // -- task 8
         System.out.println(separator);
         System.out.println("Enter string for filtering array :");
-       // printStringArray(stringArray);
-       // System.out.println("------");
-       // searchString = scanner.nextLine();
-       // System.out.println("Array with element contained search value :");
-        //String [] resultArray = filterArray(stringArray,searchString);
-      //  printStringArray(filterArray(stringArray, searchString));
+        printStringArray(stringArray);
+        System.out.println("------");
+        searchString = scanner.nextLine();
+        System.out.println("Array with element contained search value :");
+        String [] resultArray = filterArray(stringArray,searchString);
+        printStringArray(filterArray(stringArray, searchString));
         // -- task 9
         System.out.println(separator);
         printStringMultiArray(multiArray);
@@ -81,24 +84,30 @@ public class PrimitiveArrays {
         // -- task 11
         System.out.println(separator);
         printIntMultiArray(intNegativeArray(intMultiArray));
+        // -- task 12
+        System.out.println(separator);
+        System.out.println("Array charArray2 : ");
+        printCharArray(charArray2);
+        System.out.println("Array charArray1 : ");
+        printCharArray(charArray1);
+        System.out.println("Array charArray2 in charArray1 : " + isArrayInArray(charArray1,charArray2));
     }
 
-
-
-  
+    //-------------------------------------------------------------------------  
     static void printArray(int[] array){
         for(int i : array){
            System.out.print(i + ", ");
         }
         System.out.println(' ');
     }
-
+    //-------------------------------------------------------------------------
     static void printByteArray(byte[] array){
         for(byte element : array) {
            System.out.print(element + ", ");
         }
         System.out.println(' ');
     }
+    //-------------------------------------------------------------------------
     static void printStringArray(String[] array){
         
         for(String element : array) {
@@ -106,10 +115,17 @@ public class PrimitiveArrays {
         }
         System.out.println(' ');
     }
-    
+    //-------------------------------------------------------------------------
+    static void printCharArray(char[] array){
+        for(char element : array) {
+            System.out.print(element + ", ");
+        }
+        System.out.println(' ');
+    }
+    //-------------------------------------------------------------------------    
     static void printStringMultiArray(String[][] array){
         System.out.println("printStringMultiArray");
-        
+
         for(String [] row: array) {
             for (String element : row) {
                 System.out.print(element + ", ");
@@ -118,8 +134,9 @@ public class PrimitiveArrays {
         }
         System.out.println(' ');
     }
+    //-------------------------------------------------------------------------
     static void printCharMultiArray(char[][] array){
-        System.out.println("printStringMultiArray");
+        System.out.println("printCharMultiArray");
 
         for(char [] row: array) {
             for (char element : row) {
@@ -129,8 +146,9 @@ public class PrimitiveArrays {
         }
         System.out.println(' ');
     }
+    //-------------------------------------------------------------------------
     static void printIntMultiArray(int[][] array){
-        System.out.println("printStringMultiArray");
+        System.out.println("printIntMultiArray");
 
         for(int [] row: array) {
             for (int element : row) {
@@ -140,6 +158,7 @@ public class PrimitiveArrays {
         }
         System.out.println(' ');
     }
+    //-------------------------------------------------------------------------
     static String charArrayToString (char[] array){
           
         String localString = "";
@@ -148,7 +167,7 @@ public class PrimitiveArrays {
         }
         return localString;
     }
-  
+    //-------------------------------------------------------------------------  
     static int intInIntArrayStart (int[] array, int value){
         
         for(int i = 0; i < array.length; i++){
@@ -158,6 +177,7 @@ public class PrimitiveArrays {
         }
         return -1;
     }
+    //-------------------------------------------------------------------------
     static int intInIntArrayEnd (int[] array, int value){
         
         for(int i = array.length -1; i > 0; i--){
@@ -167,6 +187,7 @@ public class PrimitiveArrays {
         }
         return -1;
     }
+    //-------------------------------------------------------------------------
     static int intModValue (int[] array, int value){
         
         for(int i = 0; i < array.length; i++){
@@ -176,7 +197,7 @@ public class PrimitiveArrays {
         }
         return -1;
     }
-    
+    //-------------------------------------------------------------------------    
     static int[] sortArray (int[] array){
         
         int a = 0;
@@ -192,9 +213,8 @@ public class PrimitiveArrays {
         }
         return array;
     }
-    
+    //-------------------------------------------------------------------------    
     static boolean duplicatedBytesArray (byte[] array){
-        
         
         for(int i = 0; i < array.length; i++){
             for (int j = i+1; j < array.length; j++){
@@ -203,7 +223,7 @@ public class PrimitiveArrays {
         }
         return false;
     }
-    
+    //-------------------------------------------------------------------------    
     static String [] filterArray (String[] array, String filterValue){
         
         int j = 0;
@@ -224,24 +244,21 @@ public class PrimitiveArrays {
         
         return filteredArray;
     }
-    
+    //-------------------------------------------------------------------------    
     static char [][] intArrayToCharArray (int[][] array){
         
         char[][] charArray = new char[array.length][];
-        System.out.println(array.length);
 
         for(int i = 0; i < array.length; i++){
-            //System.out.println(array[i].length);
             charArray[i] = new char [array[i].length];
             for(int j = 0; j < array[i].length; j++){
-                //System.out.println((char)array[i][j]);
                 charArray[i][j] = (char)array[i][j];
             }
         }
         return charArray;
     }
-
-    static int [][] intNegativeArray (int[][] array){
+    //-------------------------------------------------------------------------
+    /*static int [][] intNegativeArray (int[][] array){
 
         for(int i = 0; i < array.length; i++){
             for(int j = 0; j < array[i].length; j++){
@@ -249,5 +266,37 @@ public class PrimitiveArrays {
             }
         }
         return array;
+    } */
+
+    static int [][] intNegativeArray (int[][] array) {
+
+        for(int[] row : array) {
+            for(int value : row) {
+                value = -value;
+            }
+        }
+        return array;
     }
+    //-------------------------------------------------------------------------
+    static boolean isArrayInArray (char[] array1, char[] array2) {
+
+        boolean result = false;
+
+        for(int i = 0; i < array1.length; i++){
+            int ii = i;
+            for(int j = 0; j < array2.length; j++){
+                if ( array1[ii] == array2[j] ) {
+                     result = true;
+                     ii++;
+                } else {
+                     result = false;
+                     j = array2.length;
+                }
+            }
+            if (result) {
+                return result;
+            }
+        }
+        return result;
+    } 
 }

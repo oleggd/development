@@ -11,22 +11,22 @@ class PrimitiveMethods {
     int a = 10;
     int b = 30;
     int result = sum(10, 30);
-	boolean logic_result;
-	
+    boolean logic_result;
+  
     printCustomHello("sum " + result);
     result = max(5,2);
     printCustomHello("max from 2 value: " + result);
     result = max(5,2,8);
     printCustomHello("max from 3 value: " + result);
-	result = max(5,2,8,25,-111);
+    result = max(5,2,8,25,-111);
     printCustomHello("max from 5 value: " + result);
-	result = factorial(5);
+    result = factorial(5);
     printCustomHello("factorial value: " + result);
-	logic_result = isYearHigh(2000);
+    logic_result = isYearHigh(2000);
     printCustomHello("is year "+2000+" high : " + logic_result);
-	result = fibonachi(10);
+    result = fibonachi(10);
     printCustomHello("fibonachi for 10 : " + result);
-	
+  
   } 
     
   static int sum (int a, int b){ // a = 10, b = 30
@@ -80,49 +80,49 @@ class PrimitiveMethods {
     int result = 0;
     if ( a > result) {
       result = a;
-	}
-	if ( b > result) {
+  }
+  if ( b > result) {
       result = b;
-	}
-	if ( d > result) {
+  }
+  if ( d > result) {
       result = d;
-	}
-	if ( e > result) {
+  }
+  if ( e > result) {
       result = e;
-	}
-	if ( f > result) {
+  }
+  if ( f > result) {
       result = f;
-	}
-	
+  }
+  
     return result;
    }
    
    static int factorial (int n) {
-	   int result = 1;
-	   
-	   for (int i = 1; i <= n; i++) {
-	       result = result * i;
-	   }
-	   return result;
+     int result = 1;
+     
+     for (int i = 1; i <= n; i++) {
+         result = result * i;
+     }
+     return result;
    }
    
    static boolean isYearHigh (int year) {
-	   boolean result;
-	   
-	   if (year%4 == 0 && year%400 !=0 ) {
-		   result = true;
-	   } else {
-	       result = false;
-	   }
-	   return result;
+     boolean result;
+     
+     if (year%4 == 0 && year%400 !=0 ) {
+       result = true;
+     } else {
+         result = false;
+     }
+     return result;
    }
    
    static int fibonachi (int n) {
-	   int result = 0;
-	   
-	   for (int i = 1; i <= n; i++) {
-	       result = result + i;
-	   }
-	   return result;
+     int result = 0;
+     
+     for (int i = 1; i <= n; i++) {
+         result = result + i;
+     }
+     return result;
    }
 }

@@ -1,16 +1,16 @@
-package Lesson3;
+package com.dolgov.datastructures.stack;
 import java.util.NoSuchElementException;
 
-public class ArrayQueue implements Queue {
+public class ArrayStack implements Stack {
 
     Object[] array;
     int size;
 
-    public ArrayQueue() {
+    public ArrayStack() {
         array = new Object[5];
     }
 
-    public void enqueue (Object value) {
+    public void push(Object value) {
         // grow
         if (size == array.length) {
             Object[] newArray = new Object[array.length * 3 / 2];
@@ -24,20 +24,13 @@ public class ArrayQueue implements Queue {
         size++;
     }
 
-    public Object dequeue() {
+    public Object pop() {
         if (size == 0) {
             NoSuchElementException noSuchElementException = new NoSuchElementException();
             throw noSuchElementException;
         }
-        Object result = array[0];
+        Object result = array[size - 1];
         size--;
-        Object[] newArray = new Object[size];
-
-        for (int i = 0; i < size; i++) {
-            newArray[i] = array[i];
-        }
-        array = newArray;
-
         return result;
     }
 
@@ -45,7 +38,7 @@ public class ArrayQueue implements Queue {
         if (size == 0) {
             throw new NoSuchElementException();
         }
-        return array[0];
+        return array[size - 1];
     }
 
     public int size() {

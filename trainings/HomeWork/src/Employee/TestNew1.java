@@ -1,4 +1,5 @@
-class TestNew {
+/*
+class TestNew1 {
     public static void main(String[] args) {
         Employee [] employees = MockEmployeesGenerator.generate(5);
         Employee employee = new Employee();
@@ -25,4 +26,4 @@ class TestNew {
         employees =  employeeService.sortByLastName(employeeService.employees);
         employeeService.print();
     }
-}
+}*/

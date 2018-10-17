@@ -1,4 +1,4 @@
-package Lesson3;
+package com.dolgov.datastructures.list;
 
 public class ArrayListTest {
 

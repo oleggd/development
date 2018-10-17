@@ -1,4 +1,4 @@
-package Lesson3;
+package com.dolgov.datastructures.list;
 
 public interface List {
     // add value to the end of the list
@@ -22,7 +22,7 @@ public interface List {
 
     // we can set value by index between [0, size - 1]
     // otherwise throw new IndexOutOfBoundsException
-    void set(Object value, int index);
+    Object set(Object value, int index);
 
     void clear();
 

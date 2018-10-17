@@ -1,4 +1,4 @@
-package Lesson3;
+package com.dolgov.datastructures.stack;
 public class ArrayStackTest {
     public static void main(String[] args) {
         ArrayStack arrayStack = new ArrayStack();

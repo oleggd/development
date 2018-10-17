@@ -1,4 +1,4 @@
-package Lesson3;
+package com.dolgov.datastructures.queue;
 public interface Queue {
     void enqueue(Object value);
 

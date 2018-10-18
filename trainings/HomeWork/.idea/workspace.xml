@@ -2,8 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="58b9c2fa-ad19-472e-9c5e-5dbea1190a71" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/src/test/com/dolgov/datastructures/list/LinkedListTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/src/com/dolgov/datastructures/list/ArrayList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dolgov/datastructures/queue/ArrayQueueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HomeWork.iml" beforeDir="false" afterPath="$PROJECT_DIR$/HomeWork.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Employee/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Employee/TestNew1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EmployeeNew/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EmployeeNew/TestNew.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lesson3/ArrayList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lesson3/ArrayListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dolgov/datastructures/list/ArrayListTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lesson3/ArrayQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dolgov/datastructures/queue/ArrayQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lesson3/ArrayQueueTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lesson3/ArrayStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dolgov/datastructures/stack/ArrayStack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lesson3/ArrayStackTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dolgov/datastructures/stack/ArrayStackTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lesson3/List.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dolgov/datastructures/list/List.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lesson3/Queue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dolgov/datastructures/queue/Queue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lesson3/Stack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dolgov/datastructures/stack/Stack.java" afterDir="false" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,45 +36,83 @@
         <counts>
           <entry key="project.closed" value="8" />
           <entry key="project.open.time.0" value="1" />
+<<<<<<< HEAD
           <entry key="project.open.time.11" value="2" />
+=======
+          <entry key="project.open.time.11" value="1" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
           <entry key="project.open.time.13" value="3" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.24" value="1" />
           <entry key="project.open.time.29" value="1" />
           <entry key="project.open.time.9" value="2" />
+<<<<<<< HEAD
           <entry key="project.opened" value="11" />
+=======
+          <entry key="project.opened" value="10" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+<<<<<<< HEAD
           <entry key="class" value="14" />
+=======
+          <entry key="class" value="3" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
           <entry key="iml" value="1" />
           <entry key="java" value="47" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+<<<<<<< HEAD
           <entry key="CLASS" value="14" />
+=======
+          <entry key="CLASS" value="3" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
           <entry key="IDEA_MODULE" value="1" />
           <entry key="JAVA" value="47" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+<<<<<<< HEAD
           <entry key="java" value="6196" />
+=======
+          <entry key="java" value="5945" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
+<<<<<<< HEAD
           <entry key="JAVA" value="6196" />
+=======
+          <entry key="JAVA" value="5945" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/list/LinkedList.java">
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/stack/ArrayStack.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/stack/Stack.java">
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="195">
               <caret line="205" column="5" lean-forward="true" selection-start-line="205" selection-start-column="5" selection-end-line="205" selection-end-column="5" />
@@ -73,15 +129,33 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/list/Test.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
               <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+=======
+        <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/list/LinkedList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="188">
+              <caret line="49" column="37" lean-forward="true" selection-start-line="49" selection-start-column="37" selection-end-line="49" selection-end-column="37" />
+              <folding>
+                <element signature="e#174#175#0" expanded="true" />
+                <element signature="e#205#206#0" expanded="true" />
+                <element signature="e#296#297#0" expanded="true" />
+                <element signature="e#328#329#0" expanded="true" />
+                <element signature="e#2587#2588#0" expanded="true" />
+                <element signature="e#2614#2615#0" expanded="true" />
+                <element signature="e#2971#2972#0" expanded="true" />
+                <element signature="e#3021#3022#0" expanded="true" />
+              </folding>
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/test/com/dolgov/datastructures/list/LinkedListTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
@@ -99,15 +173,67 @@
                 <element signature="e#6050#6051#0" expanded="true" />
                 <element signature="e#6087#6088#0" expanded="true" />
               </folding>
+=======
+        <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/list/Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="22" lean-forward="true" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/list/ArrayList.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="799">
               <caret line="47" column="29" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="29" />
+=======
+        <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/list/Node.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/com/dolgov/datastructures/list/LinkedListTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/com/dolgov/datastructures/list/LinkedListTest1.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
+        <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/list/List.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="23" column="52" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
+=======
+        <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/list/ArrayList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="47" column="29" lean-forward="true" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -115,8 +241,9 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/list/List.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="52" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
+            <state relative-caret-position="187">
+              <caret line="23" column="52" lean-forward="true" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
             </state>
           </provider>
         </entry>
@@ -178,9 +305,15 @@
         <option value="$PROJECT_DIR$/src/com/dolgov/datastructures/list/LinkedListTest.java" />
         <option value="$PROJECT_DIR$/src/test/com/dolgov/datastructures/list/LinkedListTest1.java" />
         <option value="$PROJECT_DIR$/src/com/dolgov/datastructures/list/Node.java" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/com/dolgov/datastructures/list/Test.java" />
         <option value="$PROJECT_DIR$/src/test/com/dolgov/datastructures/list/LinkedListTest.java" />
         <option value="$PROJECT_DIR$/src/com/dolgov/datastructures/list/LinkedList.java" />
+=======
+        <option value="$PROJECT_DIR$/src/com/dolgov/datastructures/list/LinkedList.java" />
+        <option value="$PROJECT_DIR$/src/com/dolgov/datastructures/list/Test.java" />
+        <option value="$PROJECT_DIR$/src/test/com/dolgov/datastructures/list/LinkedListTest.java" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
       </list>
     </option>
   </component>
@@ -198,6 +331,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
+=======
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -265,15 +403,22 @@
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
       <pane id="PackagesPane" />
       <pane id="Scope" />
+=======
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+<<<<<<< HEAD
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539856939849" />
+=======
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539788208447" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="create.test.in.the.same.root" value="true" />
@@ -307,11 +452,24 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="RunManager" selected="JUnit.LinkedListTest (1)">
     <configuration name="LinkedListTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="HomeWork" />
       <option name="PACKAGE_NAME" value="test.com.dolgov.datastructures.list" />
       <option name="MAIN_CLASS_NAME" value="LinkedListTest" />
+=======
+  <component name="RunManager" selected="JUnit.LinkedListTest">
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.dolgov.datastructures.list.Test" />
+      <module name="HomeWork" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.dolgov.datastructures.list.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -330,31 +488,73 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
     <configuration name="LinkedListTest.testAddIndexBegin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="HomeWork" />
       <option name="PACKAGE_NAME" value="test.com.dolgov.datastructures.list" />
       <option name="MAIN_CLASS_NAME" value="LinkedListTest" />
       <option name="METHOD_NAME" value="testAddIndexBegin" />
+=======
+    <configuration name="LinkedListTest.testAddAndRemove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="HomeWork" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.com.dolgov.datastructures.list.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.com.dolgov.datastructures.list" />
+      <option name="MAIN_CLASS_NAME" value="test.com.dolgov.datastructures.list.LinkedListTest" />
+      <option name="METHOD_NAME" value="testAddAndRemove" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
     <configuration name="LinkedListTest.testIndexOfNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="HomeWork" />
       <option name="PACKAGE_NAME" value="test.com.dolgov.datastructures.list" />
       <option name="MAIN_CLASS_NAME" value="LinkedListTest" />
       <option name="METHOD_NAME" value="testIndexOfNull" />
+=======
+    <configuration name="LinkedListTest.testContainsAdnIndex" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="HomeWork" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.com.dolgov.datastructures.list.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.com.dolgov.datastructures.list" />
+      <option name="MAIN_CLASS_NAME" value="test.com.dolgov.datastructures.list.LinkedListTest" />
+      <option name="METHOD_NAME" value="testContainsAdnIndex" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
     <configuration name="LinkedListTest.testSetInvalidIndex" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="HomeWork" />
       <option name="PACKAGE_NAME" value="test.com.dolgov.datastructures.list" />
       <option name="MAIN_CLASS_NAME" value="LinkedListTest" />
       <option name="METHOD_NAME" value="testSetInvalidIndex" />
+=======
+    <configuration name="LinkedListTest.testSetListElement" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="HomeWork" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.com.dolgov.datastructures.list.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.com.dolgov.datastructures.list" />
+      <option name="MAIN_CLASS_NAME" value="test.com.dolgov.datastructures.list.LinkedListTest" />
+      <option name="METHOD_NAME" value="testSetListElement" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -362,6 +562,7 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.LinkedListTest" />
+<<<<<<< HEAD
       <item itemvalue="JUnit.LinkedListTest (1)" />
       <item itemvalue="JUnit.LinkedListTest.testAddIndexBegin" />
       <item itemvalue="JUnit.LinkedListTest.testSetInvalidIndex" />
@@ -374,6 +575,20 @@
         <item itemvalue="JUnit.LinkedListTest" />
         <item itemvalue="JUnit.LinkedListTest.testSetInvalidIndex" />
         <item itemvalue="JUnit.LinkedListTest.testAddIndexBegin" />
+=======
+      <item itemvalue="JUnit.LinkedListTest.testSetListElement" />
+      <item itemvalue="JUnit.LinkedListTest.testContainsAdnIndex" />
+      <item itemvalue="Application.Test" />
+      <item itemvalue="JUnit.LinkedListTest.testAddAndRemove" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.LinkedListTest" />
+        <item itemvalue="JUnit.LinkedListTest.testContainsAdnIndex" />
+        <item itemvalue="JUnit.LinkedListTest.testAddAndRemove" />
+        <item itemvalue="Application.Test" />
+        <item itemvalue="JUnit.LinkedListTest.testSetListElement" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
       </list>
     </recent_temporary>
   </component>
@@ -391,6 +606,7 @@
     <servers />
   </component>
   <component name="TestHistory">
+<<<<<<< HEAD
     <history-entry file="LinkedListTest_testIndexOfNull - 2018.10.18 at 12h 41m 24s.xml">
       <configuration name="LinkedListTest.testIndexOfNull" configurationId="JUnit" />
     </history-entry>
@@ -420,13 +636,48 @@
     </history-entry>
     <history-entry file="LinkedListTest_(1) - 2018.10.18 at 12h 55m 18s.xml">
       <configuration name="LinkedListTest (1)" configurationId="JUnit" />
+=======
+    <history-entry file="LinkedListTest - 2018.10.17 at 17h 46m 05s.xml">
+      <configuration name="LinkedListTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LinkedListTest_testAddAndRemove - 2018.10.17 at 17h 46m 35s.xml">
+      <configuration name="LinkedListTest.testAddAndRemove" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LinkedListTest_testAddAndRemove - 2018.10.17 at 17h 47m 38s.xml">
+      <configuration name="LinkedListTest.testAddAndRemove" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LinkedListTest_testAddAndRemove - 2018.10.17 at 17h 52m 20s.xml">
+      <configuration name="LinkedListTest.testAddAndRemove" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LinkedListTest_testAddAndRemove - 2018.10.17 at 17h 52m 31s.xml">
+      <configuration name="LinkedListTest.testAddAndRemove" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LinkedListTest - 2018.10.17 at 17h 53m 15s.xml">
+      <configuration name="LinkedListTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LinkedListTest_testAddAndRemove - 2018.10.17 at 17h 55m 29s.xml">
+      <configuration name="LinkedListTest.testAddAndRemove" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LinkedListTest - 2018.10.17 at 17h 55m 34s.xml">
+      <configuration name="LinkedListTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LinkedListTest_testContainsAdnIndex - 2018.10.17 at 17h 56m 15s.xml">
+      <configuration name="LinkedListTest.testContainsAdnIndex" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LinkedListTest - 2018.10.17 at 17h 56m 22s.xml">
+      <configuration name="LinkedListTest" configurationId="JUnit" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
+<<<<<<< HEAD
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12899786" />
+=======
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19616205" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -502,6 +753,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/dolgov/datastructures/list/LinkedList.java</url>
+<<<<<<< HEAD
           <line>149</line>
           <properties />
           <option name="timeStamp" value="23" />
@@ -511,6 +763,17 @@
           <line>98</line>
           <properties />
           <option name="timeStamp" value="24" />
+=======
+          <line>154</line>
+          <properties />
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/dolgov/datastructures/list/LinkedList.java</url>
+          <line>47</line>
+          <properties />
+          <option name="timeStamp" value="20" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -622,6 +885,7 @@
             <element signature="e#70#71#0" expanded="true" />
             <element signature="e#98#99#0" expanded="true" />
           </folding>
+<<<<<<< HEAD
         </state>
       </provider>
     </entry>
@@ -659,6 +923,45 @@
         </state>
       </provider>
     </entry>
+=======
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Employee/TestNew1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="e#0#1090#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lesson3/CalculatorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/list/ArrayListTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/queue/ArrayQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
     <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/queue/Queue.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -690,7 +993,17 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/test/com/dolgov/datastructures/list/LinkedListTest1.java" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/stack/Stack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
     <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/stack/ArrayStack.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -698,10 +1011,17 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/stack/Stack.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/list/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="47" column="29" lean-forward="true" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="29" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
         </state>
       </provider>
     </entry>
@@ -712,6 +1032,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/list/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="799">
@@ -730,11 +1051,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/list/List.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="23" column="52" lean-forward="true" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="204">
           <caret line="15" selection-start-line="15" selection-end-line="15" />
         </state>
@@ -799,10 +1127,132 @@
             <element signature="e#3167#3168#0" expanded="true" />
             <element signature="e#5498#5499#0" expanded="true" />
             <element signature="e#5537#5538#0" expanded="true" />
+=======
+        <state relative-caret-position="187">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/com/dolgov/datastructures/list/LinkedListTest1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+>>>>>>> 89240f338ab7ef43eb797faaa51aa6062ca7f2af
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/list/LinkedList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="49" column="37" lean-forward="true" selection-start-line="49" selection-start-column="37" selection-end-line="49" selection-end-column="37" />
+          <folding>
+            <element signature="e#174#175#0" expanded="true" />
+            <element signature="e#205#206#0" expanded="true" />
+            <element signature="e#296#297#0" expanded="true" />
+            <element signature="e#328#329#0" expanded="true" />
+            <element signature="e#2587#2588#0" expanded="true" />
+            <element signature="e#2614#2615#0" expanded="true" />
+            <element signature="e#2971#2972#0" expanded="true" />
+            <element signature="e#3021#3022#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dolgov/datastructures/list/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="22" lean-forward="true" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/com/dolgov/datastructures/list/LinkedListTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>HomeWork</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
   <component name="masterDetails">
     <states>

@@ -6,7 +6,7 @@ public class LinkedList implements List, Iterable{
 
     Node head;
     Node tail;
-    int size;
+    int  size;
     Node[] list;
 
 
@@ -180,7 +180,9 @@ public class LinkedList implements List, Iterable{
     public String toString() {
         StringBuilder arrayString = new StringBuilder();
         Node currentNode = head;
+
         arrayString.append("[ ");
+
         for(int i = 0; i < size; i++) {
             arrayString.append(currentNode.value);
             currentNode = currentNode.next;
@@ -207,21 +209,34 @@ public class LinkedList implements List, Iterable{
 
     @Override
     public Iterator iterator() {
+
         return new MyIterator();
     }
 
-    /*private class MyIterator implements Iterator {
-        private int index = size;
+    private class MyIterator implements Iterator {
+        private Node currentNode = head;
 
         @Override
         public boolean hasNext() {
-            return 0;//index != 0;
+            if (currentNode != null) {
+                return ( currentNode.next != null || currentNode == tail) ;
+            }
+
+            return false;
         }
 
         @Override
         public Object next() {
-            //index--;
-            return null;--list[index];
+
+            if (currentNode == null ) {
+                return null;
+            } else if (currentNode != null && currentNode == tail) {
+                currentNode = null;
+                return tail;
+            } else {
+                currentNode = currentNode.next;
+                return currentNode.prev;
+            }
         }
-    }*/
+    }
 }

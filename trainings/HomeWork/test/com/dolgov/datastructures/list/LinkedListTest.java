@@ -3,6 +3,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 
+import java.util.Iterator;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -244,6 +246,32 @@ public class LinkedListTest {
         assertEquals(arrayWithData.size(), 2);
     }
 
+    @Test
+    public void testIteratorWhile() {
+
+        Iterator iterator = arrayWithData.iterator();
+        int elementCount = 0;
+
+        while (iterator.hasNext()) {
+            Object value = iterator.next();
+            //System.out.println("element (while): " + value);
+            elementCount +=1;
+
+        }
+        assertEquals(elementCount, 3);
+    }
+    @Test
+    public void testIteratorFor() {
+
+        Iterator iterator = arrayWithData.iterator();
+        int elementCount = 0;
+
+        for (Object element : arrayWithData ) {
+            //System.out.println("element (for): " + element);
+            elementCount +=1;
+        };
+        assertEquals(elementCount , 3);
+    }
 
 }
 

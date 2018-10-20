@@ -1,4 +1,5 @@
 package com.dolgov.datastructures.list;
+import java.util.Iterator;
 
 public class ArrayListTest {
 
@@ -7,7 +8,7 @@ public class ArrayListTest {
         process(arrayList);
     }
 
-    static void process(List list) {
+    static void process(ArrayList list) {
         String separator = "-----------------------------------------------------------------------------";
         System.out.println(separator);
         System.out.println("Process list");
@@ -19,6 +20,18 @@ public class ArrayListTest {
         list.add("E");
         list.add("C");
         System.out.println("List size : " + list.size() + " list : "+ list.toString()); // 3
+
+        System.out.println(list instanceof Iterable);
+
+       Iterator iterator = list.iterator();
+       while (iterator.hasNext()) {
+           Object value = iterator.next();
+           System.out.println("element : " + value);
+       }
+       for (Object element : list ) {
+            System.out.println("element : " + element);
+       };
+
         //
         System.out.println(separator);
         System.out.println("Add J objects into 3rd position "); // 3

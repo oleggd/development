@@ -1,13 +1,17 @@
 package com.dolgov.datastructures.list;
 
-import java.lang.IndexOutOfBoundsException;
 
-public class ArrayList implements List {
+import java.lang.IndexOutOfBoundsException;
+import java.util.Iterator;
+
+public class ArrayList implements List,Iterable {
 
     private static final int INITIAL_CAPACITY = 5;
 
     Object[] array;
     int size;
+
+    //Iterator arrayIterator = array.iterator();
 
     public ArrayList() {
 
@@ -44,24 +48,14 @@ public class ArrayList implements List {
     }
 
     public Object remove(int index) {
-
         validateIndex(index);
 
-        Object result       = null;
-        Object[] tempArray  = array;
-        int tempSize        = size;
+        Object result  = null;
+        result         = array[index];
 
-        clear();
+        System.arraycopy(array,index,array,index-1, size - index - 1);
 
-        for (int i = 0; i < tempSize; i++) {
-            if (index == i) {
-                result = tempArray[i];
-                continue;
-            }
-            add(tempArray[i]);
-        }
         return result;
-
     }
 
     public Object get(int index) {
@@ -123,6 +117,13 @@ public class ArrayList implements List {
                 return i;
             }
         }
+
+        //Iterator randomGeneratorIterator = randomGenerator.iterator();
+        //while (randomGeneratorIterator.hasNext()) {
+        //    Object value = randomGeneratorIterator.next();
+        //    System.out.println(value);
+        //}
+
         return -1;
     }
 
@@ -134,5 +135,26 @@ public class ArrayList implements List {
             }
         }
         return -1;
+    }
+
+    @Override
+    public Iterator iterator() {
+
+        return new MyIterator();
+    }
+
+    private class MyIterator implements Iterator {
+        private int index = -1;
+
+        @Override
+        public boolean hasNext() {
+            return index < size;
+        }
+
+        @Override
+        public Object next() {
+            index++;
+            return array[index];
+        }
     }
 }

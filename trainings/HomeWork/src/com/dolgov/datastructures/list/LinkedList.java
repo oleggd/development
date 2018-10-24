@@ -1,8 +1,9 @@
 package com.dolgov.datastructures.list;
 
 import java.util.Iterator;
+import java.util.Objects;
 
-public class LinkedList implements List, Iterable{
+public class LinkedList implements List{
 
     Node head;
     Node tail;
@@ -138,10 +139,8 @@ public class LinkedList implements List, Iterable{
 
     @Override
     public boolean contains(Object value) {
-        if (indexOf(value) != -1) {
-            return true;
-        }
-        return false;
+
+        return indexOf(value) != -1;
     }
 
     @Override
@@ -150,14 +149,10 @@ public class LinkedList implements List, Iterable{
         Node currentNode = head;
 
         for(int i = 0; i < size; i++) {
-            if (currentNode.value == null && value == null) {
-                return i;
-            }
-            if (currentNode.value.equals(value) /*|| (currentNode.value == null && value == null)*/ ) {
+            if (Objects.equals(value,currentNode.value)) {
                 return i;
             }
             currentNode = currentNode.next;
-
         }
         return -1;
 
@@ -169,7 +164,7 @@ public class LinkedList implements List, Iterable{
         Node currentNode = tail;
 
         for(int i = size - 1; i > 0; i--) {
-            if ((currentNode.value == null && value == null) || (currentNode.value.equals(value))) {
+            if ( Objects.equals(value,currentNode.value)) {
                 return i;
             }
             currentNode = currentNode.prev;
@@ -218,15 +213,12 @@ public class LinkedList implements List, Iterable{
 
         @Override
         public boolean hasNext() {
-            if (currentNode != null) {
-                return ( currentNode.next != null || currentNode == tail) ;
-            }
-
-            return false;
+            return ( currentNode.next != null || currentNode == tail) ;
         }
 
         @Override
         public Object next() {
+            Object value = currentNode.value;
 
             if (currentNode == null ) {
                 return null;
@@ -235,7 +227,7 @@ public class LinkedList implements List, Iterable{
                 return tail;
             } else {
                 currentNode = currentNode.next;
-                return currentNode.prev;
+                return value;
             }
         }
     }

@@ -125,4 +125,41 @@ public class FileManagerTest {
         }
 
     }
+
+    @Test()
+    public void copy() throws IOException {
+        FileManager testFileManager = new FileManager();
+
+        // copy wiht invalid pathes
+        testFileManager.copy(testPathName+"4\\5\\6\\7\\888\\",testPathName+"0\\");
+        testFileManager.copy(testPathName+"4\\5\\6\\7\\8\\test812.txt",testPathName+"0\\");
+
+        // copy valid pathes
+        testFileManager.copy(testPathName+"4\\5\\6\\7\\",testPathName+"0\\");
+        testFileManager.copy(testPathName+"4\\5\\6\\test61.txt",testPathName+"0\\");
+        testFileManager.copy(testPathName+"4\\5\\6\\test62.txt",testPathName+"0\\");
+
+        int fileCount = testFileManager.countFiles(testPathName+"0\\");
+        assertEquals(6, fileCount);
+
+    }
+
+    @Test
+    public void move() throws IOException {
+        FileManager testFileManager = new FileManager();
+
+        // copy wiht invalid pathes
+        testFileManager.copy(testPathName+"4\\5\\6\\7\\888\\",testPathName+"0\\");
+        testFileManager.copy(testPathName+"4\\5\\6\\7\\8\\test812.txt",testPathName+"0\\");
+
+        // copy valid pathes
+        testFileManager.move(testPathName+"4\\5\\6\\7\\",testPathName+"1\\");
+        testFileManager.move(testPathName+"4\\5\\6\\test61.txt",testPathName+"1\\");
+        testFileManager.move(testPathName+"4\\5\\6\\test62.txt",testPathName+"1\\");
+
+        int fileCount = testFileManager.countFiles(testPathName+"4\\5\\6\\7\\");
+        assertEquals(0, fileCount);
+        fileCount = testFileManager.countFiles(testPathName+"1\\");
+        assertEquals(7, fileCount);
+    }
 }

@@ -1,14 +1,12 @@
 package com.dolgov.datastructures.list;
+import org.junit.Test;
+
 import java.util.Iterator;
 
 public class ArrayListTest {
 
-    public static void main(String[] args) {
-        ArrayList arrayList = new ArrayList();
-        process(arrayList);
-    }
-
-    static void process(ArrayList list) {
+    @Test
+    static void fullArrayListTest(ArrayList list) {
         String separator = "-----------------------------------------------------------------------------";
         System.out.println(separator);
         System.out.println("Process list");

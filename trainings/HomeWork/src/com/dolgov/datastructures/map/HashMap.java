@@ -76,6 +76,16 @@ public class HashMap implements Map, Iterable {
                     }
                 }
             }
+            /*for (Object entryObj : this) {
+                Entry entry = (Entry) entryObj;
+;
+                index = getBucketIndex(entry.key, tempBuckets.length);
+                if (tempBuckets[index] == null ) {
+                    tempBuckets[index] = new ArrayList<>();
+                }
+                tempBuckets[index].add(entry);
+            }*/
+
             buckets = tempBuckets;
         }
     }

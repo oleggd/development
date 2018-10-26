@@ -18,19 +18,30 @@ public class RequestHandler {
 
     public void handle() throws IOException {
 
-        String value;
+        String contentString;
         Request request = new Request();
-        RequestParser requestParser = new RequestParser();
+        RequestParser requestParser   = new RequestParser();
         ResourceReader resourceReader = new ResourceReader(webAppPath);
-        ResponseWriter responeWriter = new ResponseWriter(writer);
-
-
+        ResponseWriter responeWriter  = new ResponseWriter(writer);
 
         // get request
         // call RequestParser.parseRequest
+        try {
+            request = requestParser.parseRequest(reader);
+        } catch (IOException e) {
+            // call ResponceWriter.sendSomeResponce() depends on results
+            responeWriter.sendBadRequestResponse();
+        }
+
 
         // get content for uri from parser
         // call ResourceReader.readContent(request.uri)
+        try {
+            contentString = resourceReader.readContent(request.uri);
+        } catch (IOException e) {
+            // call ResponceWriter.sendSomeResponce() depends on results
+            responeWriter.sendNotFoundResponse();
+        }
 
         // write file into output
         // call ResponceWriter.sendSomeResponce() depends on results

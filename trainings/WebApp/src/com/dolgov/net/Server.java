@@ -5,11 +5,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
-    private static int port = 3000;
+    //private int port = 3000;
     private String webAppPath;
 
     public void start() throws IOException {
-        try (ServerSocket serverSocket = new ServerSocket(port);) {
+        try (ServerSocket serverSocket = new ServerSocket(3000);) {
 
             while (true) {
                 try (Socket socket = serverSocket.accept();
@@ -18,10 +18,7 @@ public class Server {
 
                     RequestHandler requestHandler = new RequestHandler(bufferedReader,bufferedWriter,webAppPath);
 
-                    while (true) {
-                        requestHandler.handle();
-                    }
-
+                    requestHandler.handle();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

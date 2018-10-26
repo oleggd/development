@@ -1,14 +1,18 @@
 package com.dolgov.net;
 
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
 public class ServerTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Server server = new Server();
-        server.setPort(3000);
-        server.setWebAppPath("resource/webapp");
+        //server.setPort(3000);
+        //server.setWebAppPath("resource/webapp");
         server.start();
     }
+    //@Test
+
 }
 
 

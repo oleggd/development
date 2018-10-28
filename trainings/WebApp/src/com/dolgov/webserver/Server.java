@@ -1,15 +1,27 @@
-package com.dolgov.net;
+package com.dolgov.webserver;
+
+import com.dolgov.webserver.service.*;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
-    //private int port = 3000;
+    private static final int DEFAUT_PORT = 3000;
+    private int port;
     private String webAppPath;
 
+    public Server(String webAppPath) {
+        this(DEFAUT_PORT,webAppPath);
+    }
+
+    public Server(int port, String webAppPath) {
+        this.port = port;
+        this.webAppPath = webAppPath;
+    }
+
     public void start() throws IOException {
-        try (ServerSocket serverSocket = new ServerSocket(3000);) {
+        try (ServerSocket serverSocket = new ServerSocket(DEFAUT_PORT);) {
 
             while (true) {
                 try (Socket socket = serverSocket.accept();

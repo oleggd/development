@@ -1,4 +1,6 @@
-package com.dolgov.net;
+package com.dolgov.webserver.service;
+
+import com.dolgov.webserver.entity.Request;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,6 +14,7 @@ public class RequestParser {
         // read first status line
         injectUriAndMethod(request, reader.readLine());
         // read others
+        //call injectHeaders
         injectHeaders(request, reader);
         return request;
 
@@ -30,7 +33,6 @@ public class RequestParser {
             request.headers.put(value.substring(0,value.indexOf(":")),
                                 value.substring(value.indexOf(":"),value.length())
                                );
-            //call injectHeaders
         }
 
     }

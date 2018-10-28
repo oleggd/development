@@ -1,12 +1,12 @@
-package com.dolgov.net;
+package com.dolgov.webserver.entity;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Request {
-    String uri;
-    String httpMethod;
-    Map<String,String> headers = new HashMap<String,String>();
+    public String uri;
+    public String httpMethod;
+    public Map<String,String> headers = new HashMap<String,String>();
 
     public void buildRequest () {
 

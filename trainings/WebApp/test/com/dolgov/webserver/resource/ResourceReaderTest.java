@@ -1,5 +1,6 @@
-package com.dolgov.net;
+package com.dolgov.webserver.resource;
 
+import com.dolgov.webserver.resource.ResourceReader;
 import org.junit.Test;
 
 import java.io.IOException;

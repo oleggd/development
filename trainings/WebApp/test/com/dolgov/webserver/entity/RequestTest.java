@@ -1,4 +1,4 @@
-package com.dolgov.net;
+package com.dolgov.webserver.entity;
 
 import org.junit.Test;
 

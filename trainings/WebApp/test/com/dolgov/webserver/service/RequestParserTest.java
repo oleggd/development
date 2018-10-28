@@ -1,5 +1,6 @@
-package com.dolgov.net;
+package com.dolgov.webserver.service;
 
+import com.dolgov.webserver.entity.Request;
 import org.junit.Test;
 
 import java.io.BufferedReader;

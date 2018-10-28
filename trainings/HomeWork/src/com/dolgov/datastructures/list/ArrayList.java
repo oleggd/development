@@ -4,11 +4,11 @@ package com.dolgov.datastructures.list;
 import java.lang.IndexOutOfBoundsException;
 import java.util.Iterator;
 
-public class ArrayList implements List,Iterable {
+public class ArrayList<T> implements List<T>,Iterable {
 
     private static final int INITIAL_CAPACITY = 5;
 
-    Object[] array;
+    T[] array;
     int size;
 
     //Iterator arrayIterator = array.iterator();
@@ -19,16 +19,16 @@ public class ArrayList implements List,Iterable {
     }
 
     public ArrayList(int capacity) {
-        array = new Object[capacity];
+        array = (T[]) new Object[capacity];
         //size = capacity;
     }
 
-    public void add(Object value) {
+    public void add(T value) {
         System.out.println("array list size :" + size);
         add(value,size);
     }
 
-    public void add(Object value, int index) {
+    public void add(T value, int index) {
 
         if (index > size || index < 0) {
             throw new IndexOutOfBoundsException("Index: " + index + " should be between 0 and " + size
@@ -36,7 +36,7 @@ public class ArrayList implements List,Iterable {
         }
 
         if ( size == array.length ) {
-            Object[] newArray = new Object[(int) (array.length * 1.5) + 1];
+            T[] newArray = (T[]) new Object[(int) (array.length * 1.5) + 1];
             System.arraycopy(array,0,newArray,0, array.length);
             array = newArray;
         }
@@ -47,18 +47,18 @@ public class ArrayList implements List,Iterable {
         size++;
     }
 
-    public Object remove(int index) {
+    public T remove(int index) {
         validateIndex(index);
 
-        Object result  = null;
-        result         = array[index];
+        T result  = null;
+        result    = (T) array[index];
 
         System.arraycopy(array,index,array,index-1, size - index - 1);
 
         return result;
     }
 
-    public Object get(int index) {
+    public T get(int index) {
         validateIndex(index);
         return array[index];
     }
@@ -69,16 +69,16 @@ public class ArrayList implements List,Iterable {
                     + " (inclusive)");
         }
     }
-    public Object set(Object value, int index) {
+    public T set(T value, int index) {
         validateIndex(index);
-        Object oldValue = array[index];
+        T oldValue = array[index];
         array[index] = value;
         return oldValue;
     }
 
     public void clear() {
 
-        for (Object element : array) {
+        for (T element : array) {
             element = null;
         }
         size = 0;
@@ -105,12 +105,12 @@ public class ArrayList implements List,Iterable {
         return (size ==0);
     }
 
-    public boolean contains(Object value) {
+    public boolean contains(T value) {
 
         return indexOf(value) != -1;
     }
 
-    public int indexOf(Object value) {
+    public int indexOf(T value) {
 
         for (int i = 0; i < array.length; i++) {
             if (array[i] == value) {
@@ -127,7 +127,7 @@ public class ArrayList implements List,Iterable {
         return -1;
     }
 
-    public int lastIndexOf(Object value) {
+    public int lastIndexOf(T value) {
 
         for (int i = array.length; i >= 0; i--) {
             if (array[i] == value) {

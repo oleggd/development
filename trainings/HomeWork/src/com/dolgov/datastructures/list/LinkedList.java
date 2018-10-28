@@ -3,7 +3,7 @@ package com.dolgov.datastructures.list;
 import java.util.Iterator;
 import java.util.Objects;
 
-public class LinkedList implements List{
+public class LinkedList<T> implements List<T> {
 
     Node head;
     Node tail;
@@ -16,12 +16,12 @@ public class LinkedList implements List{
     }
 
     @Override
-    public void add(Object value) {
+    public void add(T value) {
         add(value, size );
     }
 
     @Override
-    public void add(Object value, int index) {
+    public void add(T value, int index) {
         validateIndex(index);
 
         //System.out.println("add - index :" + index + " size : "+ size + " value :" + value);
@@ -67,7 +67,7 @@ public class LinkedList implements List{
     }
 
     @Override
-    public Object remove(int index) {
+    public T remove(int index) {
         validateIndexInside(index);
         Node currentNode = getNode(index);
 
@@ -84,7 +84,7 @@ public class LinkedList implements List{
             currentNode.next.prev = currentNode.prev;
         }
         size--;
-        return currentNode.value;
+        return (T) currentNode.value;
     }
 
     public Node getNode(int index) {
@@ -98,14 +98,14 @@ public class LinkedList implements List{
     }
 
     @Override
-    public Object get(int index) {
+    public T get(int index) {
         validateIndex(index);
-        return getNode(index).value;
+        return (T) getNode(index).value;
     }
 
     @Override
-    public Object set(Object value, int index) {
-        Object oldValue = new Object();
+    public T set(T value, int index) {
+        T oldValue = (T) new Object();
 
         /*if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("Index: " + index + " should be between 0 and " + size
@@ -114,7 +114,7 @@ public class LinkedList implements List{
         validateIndexInside(index);
         Node currentNode = getNode(index);
 
-        oldValue = currentNode.value;
+        oldValue = (T) currentNode.value;
         currentNode.value = value;
 
         return oldValue;
@@ -138,13 +138,13 @@ public class LinkedList implements List{
     }
 
     @Override
-    public boolean contains(Object value) {
+    public boolean contains(T value) {
 
         return indexOf(value) != -1;
     }
 
     @Override
-    public int indexOf(Object value) {
+    public int indexOf(T value) {
 
         Node currentNode = head;
 
@@ -159,7 +159,7 @@ public class LinkedList implements List{
     }
 
     @Override
-    public int lastIndexOf(Object value) {
+    public int lastIndexOf(T value) {
 
         Node currentNode = tail;
 
@@ -213,18 +213,18 @@ public class LinkedList implements List{
 
         @Override
         public boolean hasNext() {
-            return ( currentNode.next != null || currentNode == tail) ;
+            return (currentNode != null && (currentNode.next != null || currentNode == tail) ) ;
         }
 
         @Override
         public Object next() {
-            Object value = currentNode.value;
+            T value = (T) currentNode.value;
 
             if (currentNode == null ) {
                 return null;
             } else if (currentNode != null && currentNode == tail) {
                 currentNode = null;
-                return tail;
+                return tail.value;
             } else {
                 currentNode = currentNode.next;
                 return value;

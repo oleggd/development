@@ -1,3 +1,5 @@
+package com.dolgov.datastructures.list;
+
 import com.dolgov.datastructures.list.LinkedList;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,11 +12,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class LinkedListTest {
-    LinkedList arrayWithData;
+    LinkedList<String> arrayWithData;
 
     @Before
     public void before() {
-        arrayWithData = new LinkedList();
+        arrayWithData = new LinkedList<String>();
         arrayWithData.add("str1");
         arrayWithData.add("str2");
         arrayWithData.add("str3");
@@ -253,7 +255,7 @@ public class LinkedListTest {
         int elementCount = 0;
 
         while (iterator.hasNext()) {
-            Object value = iterator.next();
+            String value = (String) iterator.next();
             //System.out.println("element (while): " + value);
             elementCount +=1;
 
@@ -263,7 +265,7 @@ public class LinkedListTest {
     @Test
     public void testIteratorFor() {
 
-        Iterator iterator = arrayWithData.iterator();
+        //Iterator iterator = arrayWithData.iterator();
         int elementCount = 0;
 
         for (Object element : arrayWithData ) {

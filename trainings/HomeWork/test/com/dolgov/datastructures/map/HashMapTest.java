@@ -9,7 +9,7 @@ import java.util.Iterator;
 import static org.junit.Assert.*;
 
 public class HashMapTest {
-    HashMap hashMapWithData;
+    HashMap<String, Integer> hashMapWithData;
 
     @Before
     public void before() {

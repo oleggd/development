@@ -3,7 +3,7 @@ package com.dolgov.datastructures.map;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class HashMap implements Map, Iterable {
+public class HashMap<K,V> implements Map<K,V>, Iterable {
 
     private final static double LOAD_FACTOR = 0.75;
     private final static int INCREASE_FACTOR = 2;
@@ -13,13 +13,13 @@ public class HashMap implements Map, Iterable {
     int size;
 
 
-    private int getBucketIndex(Object key, int bucketsSize) {
+    private int getBucketIndex(K key, int bucketsSize) {
 
         return Math.abs(key.hashCode() % bucketsSize);
     }
 
     @Override
-    public Object put(Object key, Object value) {
+    public V put(K key, V value) {
 
         extendBuckets();
 
@@ -31,7 +31,7 @@ public class HashMap implements Map, Iterable {
 
         ArrayList bucket = buckets[index];
 
-        Object originalValue = null;
+        V originalValue = null;
         // find existing entry
         for (Object entryObject : bucket) {
             Entry entry = (Entry) entryObject;
@@ -76,23 +76,13 @@ public class HashMap implements Map, Iterable {
                     }
                 }
             }
-            /*for (Object entryObj : this) {
-                Entry entry = (Entry) entryObj;
-;
-                index = getBucketIndex(entry.key, tempBuckets.length);
-                if (tempBuckets[index] == null ) {
-                    tempBuckets[index] = new ArrayList<>();
-                }
-                tempBuckets[index].add(entry);
-            }*/
-
             buckets = tempBuckets;
         }
     }
 
 
     @Override
-    public Object putIfAbsent(Object key, Object value) {
+    public V putIfAbsent(K key, V value) {
         int index = getBucketIndex(key, buckets.length);
 
         // check size of buckets and extend if no space left
@@ -104,7 +94,7 @@ public class HashMap implements Map, Iterable {
 
         ArrayList bucket = buckets[index];
 
-        Object originalValue = null;
+        V originalValue = null;
         // find existing entry
         for (Object entryObject : bucket) {
             Entry entry = (Entry) entryObject;
@@ -128,7 +118,7 @@ public class HashMap implements Map, Iterable {
     }
 
     @Override
-    public Object get(Object key) {
+    public V get(K key) {
 
         int index = getBucketIndex(key, buckets.length);
 
@@ -147,7 +137,7 @@ public class HashMap implements Map, Iterable {
     }
 
     @Override
-    public Object remove(Object key) {
+    public V remove(K key) {
 
         int index = getBucketIndex(key, buckets.length);
         ArrayList bucket = buckets[index];
@@ -156,7 +146,7 @@ public class HashMap implements Map, Iterable {
             return null;
         }
 
-        Object oldValue = null;
+        V oldValue = null;
 
         Iterator iterator = bucket.iterator();
         // remove
@@ -182,7 +172,7 @@ public class HashMap implements Map, Iterable {
     }
 
     @Override
-    public boolean containsKey(Object key) {
+    public boolean containsKey(K key) {
         return get(key) != null;
     }
 
@@ -206,13 +196,7 @@ public class HashMap implements Map, Iterable {
         }
 
         @Override
-        public Object next() {
-
-            /*if (*//*iterator.hasNext() &&*//* index + 1 < buckets.length) {
-                index ++;
-                return buckets[index-1] != null ? buckets[index-1].iterator().next() : null;
-            }
-            return null;*/
+        public V next() {
 
             Object item = null;
             if (iterator.hasNext()) {
@@ -227,11 +211,11 @@ public class HashMap implements Map, Iterable {
             return ((Entry) item).value;
         }
     }
-    private static class Entry {
-        Object key;
-        Object value;
+    private class Entry {
+        K key;
+        V value;
 
-        public Entry(Object key, Object value) {
+        public Entry(K key, V value) {
             this.key = key;
             this.value = value;
         }

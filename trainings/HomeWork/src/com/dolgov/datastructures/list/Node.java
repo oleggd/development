@@ -1,8 +1,8 @@
 package com.dolgov.datastructures.list;
 
-public class Node {
+public class Node<T> {
 
-    Object value;
+    T value;
     Node prev;
     Node next;
 

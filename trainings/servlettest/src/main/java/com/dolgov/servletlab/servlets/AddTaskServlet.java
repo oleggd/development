@@ -1,5 +1,6 @@
 package com.dolgov.servletlab.servlets;
 
+import com.dolgov.servletlab.dao.JdbcTodoDao;
 import com.dolgov.servletlab.entity.Todo;
 import com.dolgov.servletlab.templater.PageGenerator;
 
@@ -8,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class AddTaskServlet extends HttpServlet {
 
     List<Todo> todoList;
-    int nextId = 1;
+    private JdbcTodoDao jdbcTodo;
 
     public AddTaskServlet(List<Todo> todoList) {
         this.todoList = todoList;
+    }
+
+    public AddTaskServlet(JdbcTodoDao jdbcTodo) {
+        this.jdbcTodo = jdbcTodo;
     }
 
     @Override
@@ -40,8 +42,8 @@ public class AddTaskServlet extends HttpServlet {
         LocalDate dueDate = LocalDate.parse(req.getParameter("dueDate"), formatter);
 
         int priority = Integer.parseInt(req.getParameter("priority"));
-        Todo todo = new Todo(todoList.size()+1, name, dueDate, priority);
-        todoList.add(todo);
+        Todo todo = new Todo(/*todoList.size()+1,*/ name, dueDate, priority);
+        jdbcTodo.add(todo);
 
         resp.sendRedirect("/todolist");
     }

@@ -1,5 +1,6 @@
 package com.dolgov.servletlab.servlets;
 
+import com.dolgov.servletlab.dao.JdbcTodoDao;
 import com.dolgov.servletlab.entity.Todo;
 import com.dolgov.servletlab.templater.PageGenerator;
 
@@ -13,19 +14,21 @@ import java.util.List;
 
 public class DeleteTaskServlet extends HttpServlet {
 
-    List<Todo> todoList;
-    Todo       currentTodo;
+    private List<Todo>  todoList;
+    private Todo        currentTodo;
+    private JdbcTodoDao jdbcTodo;
 
     public DeleteTaskServlet(List<Todo> todoList) {
         this.todoList = todoList;
     }
+    public DeleteTaskServlet(JdbcTodoDao jdbcTodo) { this.jdbcTodo = jdbcTodo;}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String currentID = req.getParameter("id");
 
         Integer todoID = Integer.parseInt(currentID);
-        Iterator<Todo> iterator = todoList.iterator();
+        /*Iterator<Todo> iterator = todoList.iterator();
 
         while (iterator.hasNext()) {
             Todo todo = iterator.next();
@@ -34,9 +37,9 @@ public class DeleteTaskServlet extends HttpServlet {
                 //todoList.remove(todoID);//currentTodo = todo;//
                 break;
             }
-        }
+        }*/
+        jdbcTodo.removeById(todoID);
         resp.sendRedirect("/todolist");
-        //resp.setStatus(202);//getWriter().write(page);
     }
 
     @Override

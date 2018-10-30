@@ -1,5 +1,7 @@
 package com.dolgov.servletlab.main;
 
+import com.dolgov.servletlab.dao.JdbcTodoDao;
+import com.dolgov.servletlab.entity.Todo;
 import com.dolgov.servletlab.entity.Todo;
 import com.dolgov.servletlab.servlets.*;
 import org.eclipse.jetty.server.Server;
@@ -24,16 +26,23 @@ public class Main {
         server.start();*/
 
         // config store
-        List<Todo> todoList = new ArrayList<>();
+        /*List<Todo> todoList = new ArrayList<>();
         todoList.add(new Todo(1, "Read documentation", LocalDate.of(2018, 10, 29), 5));
         todoList.add(new Todo(2, "Do home work", LocalDate.of(2018, 10, 30), 7));
-        todoList.add(new Todo(3, "Test scripts", LocalDate.of(2018, 11, 01), 3));
+        todoList.add(new Todo(3, "Test scripts", LocalDate.of(2018, 11, 01), 3));*/
+        JdbcTodoDao jdbcTodo = new JdbcTodoDao();
+        Todo todo = new Todo("Read documentation", LocalDate.of(2018, 10, 29), 5);
+        jdbcTodo.add(todo);
+        todo = new Todo("Do home work", LocalDate.of(2018, 10, 30), 10);
+        jdbcTodo.add(todo);
+        todo = new Todo(3, "Test scripts", LocalDate.of(2018, 11, 01), 15);
+        jdbcTodo.add(todo);
 
         // config servlets
-        TodoListServlet todoListServlet = new TodoListServlet(todoList);
-        AddTaskServlet addTaskServlet = new AddTaskServlet(todoList);
-        EditTaskServlet editTaskServlet = new EditTaskServlet(todoList);
-        DeleteTaskServlet deleteTaskServlet = new DeleteTaskServlet(todoList);
+        TodoListServlet todoListServlet = new TodoListServlet(jdbcTodo);
+        AddTaskServlet addTaskServlet   = new AddTaskServlet(jdbcTodo);
+        EditTaskServlet editTaskServlet = new EditTaskServlet(jdbcTodo);
+        DeleteTaskServlet deleteTaskServlet = new DeleteTaskServlet(jdbcTodo);
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.addServlet(new ServletHolder(todoListServlet), "/todolist");

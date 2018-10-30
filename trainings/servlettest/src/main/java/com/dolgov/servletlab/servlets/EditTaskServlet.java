@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class EditTaskServlet extends HttpServlet {
@@ -24,10 +25,13 @@ public class EditTaskServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String currentID = req.getParameter("id");
         String name = req.getParameter("name");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        //convert String to LocalDate
+        LocalDate dueDate = LocalDate.parse(req.getParameter("dueDate"), formatter);
         int priority = Integer.parseInt(req.getParameter("priority"));
 
         Map<String, Object> params = new HashMap<>();
-        Todo todo = new Todo(Integer.parseInt(currentID), name, LocalDate.now().plusDays(1), priority);
+        Todo todo = new Todo(Integer.parseInt(currentID), name, dueDate, priority);
 
         params.put("todo",todo);
 
@@ -41,10 +45,13 @@ public class EditTaskServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer todoID = Integer.parseInt(req.getParameter("id"));;
         String name    = req.getParameter("name");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        //convert String to LocalDate
+        LocalDate dueDate = LocalDate.parse(req.getParameter("dueDate"), formatter);
         int priority   = Integer.parseInt(req.getParameter("priority"));
 
 
-        Todo updatedTodo = new Todo(todoID, name, LocalDate.now().plusDays(1), priority);
+        Todo updatedTodo = new Todo(todoID, name, dueDate, priority);
         //ListIterator<String> iterator = list.listIterator();
         ListIterator<Todo> iterator = todoList.listIterator();
 

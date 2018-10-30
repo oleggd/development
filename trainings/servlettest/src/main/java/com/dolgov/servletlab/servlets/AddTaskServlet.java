@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,9 +35,12 @@ public class AddTaskServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
-        int priority = Integer.parseInt(req.getParameter("priority"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        //convert String to LocalDate
+        LocalDate dueDate = LocalDate.parse(req.getParameter("dueDate"), formatter);
 
-        Todo todo = new Todo(todoList.size()+1, name, LocalDate.now().plusDays(1), priority);
+        int priority = Integer.parseInt(req.getParameter("priority"));
+        Todo todo = new Todo(todoList.size()+1, name, dueDate, priority);
         todoList.add(todo);
 
         resp.sendRedirect("/todolist");

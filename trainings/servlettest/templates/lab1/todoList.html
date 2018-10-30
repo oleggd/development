@@ -11,6 +11,7 @@
     <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
     <!--script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--link rel="stylesheet" href="styles.css"-->
     <title>TODO manager</title>
 </head>
 <body>
@@ -36,12 +37,13 @@
         </nav>
     </div>
 
-<div class="container">
+<div class="container ">
     <br>
     <br>
     <h1>Todo List</h1>
 
-    <table class="table table-striped">
+    <div class=table-responsive">
+    <table class="table table-bordered table-striped">
         <thead>
         <tr>
             <th scope="col">id</th>
@@ -53,8 +55,9 @@
         </tr>
         </thead>
         <tbody>
+        <!--tbody style="display: block;overflow-y: scroll;overflow-x: hidden;height: 300px;"-->
+
         <form id="deleteFormId" action="return confirm('Are you sure?')" method="post" style="display: none">
-            <!--input type="hidden" name="myParameterName" value="myParameterValue"-->
             <input type="hidden" name="" value="">
         </form>
 
@@ -67,12 +70,13 @@
                 <td> <a href="/todolist/edit?id=${todo.id}&dueDate=${todo.dueDate}&name=${todo.name}&priority=${todo.priority}"> Edit</a> </td>
                 <td> <a href="/todolist/delete?id=${todo.id}" onclick="return confirm('Are you sure?')">
                     <span class="fa fa-trash"></span> </a>
-                     
+
                 </td>
             </tr>
         </#list>
         </tbody>
     </table>
+    </div>
 </div>
 
 <!-- Optional JavaScript -->

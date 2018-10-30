@@ -17,7 +17,11 @@ public class Todo {
         this.dueDate = dueDate;
         this.priority = priority;
     }
-
+    public Todo(String name, LocalDate dueDate, int priority) {
+        this.name = name;
+        this.dueDate = dueDate;
+        this.priority = priority;
+    }
     public int getId() {
         return id;
     }

@@ -1,5 +1,6 @@
 package com.dolgov.servletlab.servlets;
 
+import com.dolgov.servletlab.dao.JdbcTodoDao;
 import com.dolgov.servletlab.entity.Todo;
 import com.dolgov.servletlab.templater.PageGenerator;
 
@@ -15,11 +16,12 @@ import java.util.*;
 public class EditTaskServlet extends HttpServlet {
 
     List<Todo> todoList;
-    int nextId = 1;
+    private JdbcTodoDao jdbcTodo;
 
     public EditTaskServlet(List<Todo> todoList) {
         this.todoList = todoList;
     }
+    public EditTaskServlet(JdbcTodoDao jdbcTodo) { this.jdbcTodo = jdbcTodo;}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -43,6 +45,7 @@ public class EditTaskServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         Integer todoID = Integer.parseInt(req.getParameter("id"));;
         String name    = req.getParameter("name");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -50,20 +53,9 @@ public class EditTaskServlet extends HttpServlet {
         LocalDate dueDate = LocalDate.parse(req.getParameter("dueDate"), formatter);
         int priority   = Integer.parseInt(req.getParameter("priority"));
 
-
         Todo updatedTodo = new Todo(todoID, name, dueDate, priority);
-        //ListIterator<String> iterator = list.listIterator();
-        ListIterator<Todo> iterator = todoList.listIterator();
 
-        while (iterator.hasNext()) {
-            Todo currentTodo = iterator.next();
-            if ( todoID.equals(currentTodo.getId())) {
-                iterator.set(updatedTodo);
-                //todoList.remove(todoID);//currentTodo = todo;//
-                break;
-            }
-        }
-
+        jdbcTodo.set(updatedTodo);
         resp.sendRedirect("/todolist");
     }
 

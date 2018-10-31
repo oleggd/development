@@ -31,12 +31,12 @@ public class Main {
         todoList.add(new Todo(2, "Do home work", LocalDate.of(2018, 10, 30), 7));
         todoList.add(new Todo(3, "Test scripts", LocalDate.of(2018, 11, 01), 3));*/
         JdbcTodoDao jdbcTodo = new JdbcTodoDao();
-        Todo todo = new Todo("Read documentation", LocalDate.of(2018, 10, 29), 5);
+        /*Todo todo = new Todo("Read documentation", LocalDate.of(2018, 10, 29), 5);
         jdbcTodo.add(todo);
         todo = new Todo("Do home work", LocalDate.of(2018, 10, 30), 10);
         jdbcTodo.add(todo);
         todo = new Todo(3, "Test scripts", LocalDate.of(2018, 11, 01), 15);
-        jdbcTodo.add(todo);
+        jdbcTodo.add(todo);*/
 
         // config servlets
         TodoListServlet todoListServlet = new TodoListServlet(jdbcTodo);

@@ -10,10 +10,14 @@ import java.util.List;
 
 public class JdbcTodoDao {
 
-    private static final String ADD_TODO_SQL_PREFIX = "INSERT INTO todo_list (name, dueDate, priority)  VALUES ";
-    private static final String GET_ALL_SQL = "SELECT id, name, due_date, priority FROM  todo_list;";
+    private String url = "jdbc:postgresql://localhost:5432/mydb";
+    private String user = "postgres";
+    private String password = "1234";
 
-    private static final String ADD_TODO_SQL = "INSERT INTO todo_list (name, due_date, priority)  VALUES (?, ?, ?);";
+    private static final String ADD_TODO_SQL_PREFIX = "INSERT INTO todo_list (name, dueDate, priority)  VALUES ";
+    private static final String GET_ALL_SQL = "SELECT id, name, due_date, priority FROM  todo_list ORDER BY id;";
+
+    private static final String ADD_TODO_SQL = "INSERT INTO todo_list (id, name, due_date, priority)  VALUES (nextval('public.todo_list_id_seq'),?, ?, ?);";
     private static final String SET_TODO_SQL = "UPDATE todo_list SET name = ?, due_date = ?, priority = ?  WHERE id = ?;";
     private static final String REMOVE_TODO_SQL = "DELETE FROM todo_list WHERE id = ?;";
 
@@ -65,7 +69,7 @@ public class JdbcTodoDao {
              PreparedStatement statement = connection.prepareStatement(ADD_TODO_SQL);) {
 
             statement.setString(1, todo.getName());
-            statement.setString(2, todo.getDueDate().toString());
+            statement.setObject(2, Date.valueOf(todo.getDueDate()));
             statement.setInt(3, todo.getPriority());
 
             statement.executeUpdate();
@@ -79,9 +83,8 @@ public class JdbcTodoDao {
     public void set(Todo todo) {
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(SET_TODO_SQL);) {
-
             statement.setString(1, todo.getName());
-            statement.setString(2, todo.getDueDate().toString());
+            statement.setObject(2, Date.valueOf(todo.getDueDate()));
             statement.setInt(3, todo.getPriority());
             statement.setInt(4, todo.getId());
 
@@ -93,7 +96,7 @@ public class JdbcTodoDao {
     }
 
     //"DELETE FROM todo_list WHERE id = ?;"
-    void removeById(int id) {
+    public void removeById(int id) {
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(REMOVE_TODO_SQL);) {
 
@@ -107,8 +110,9 @@ public class JdbcTodoDao {
     }
 
     private Connection getConnection() throws SQLException {
-        String url = "jdbc:sqlite:db.sqllite";
-        Connection connection = DriverManager.getConnection(url);
+
+        //String url = "jdbc:postgresql://localhost:5432/mydb";
+        Connection connection = DriverManager.getConnection(url,user,password);
         return connection;
     }
 }

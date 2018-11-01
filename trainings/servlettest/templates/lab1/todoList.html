@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
+    <!--script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--link rel="stylesheet" href="styles.css"-->
+    <title>TODO manager</title>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">Todo List</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="/todolist">Todo's<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/todolist/add">Todo Add</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+    </div>
+
+<div class="container ">
+    <br>
+    <br>
+    <h1>Todo List</h1>
+
+    <div class=table-responsive">
+    <table id="todoList" class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th class="th-sm" scope="col">id <i class="fa fa-sort float-right" aria-hidden="true"></i> </th>
+            <th class="th-sm" scope="col">Name</th>
+            <th class="th-sm" scope="col">Due date</th>
+            <th class="th-sm" scope="col">Priority</th>
+            <th class="th-sm" scope="col">Edit</th>
+            <th class="th-sm" scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--tbody style="display: block;overflow-y: scroll;overflow-x: hidden;height: 300px;"-->
+
+        <form id="deleteFormId" action="return confirm('Are you sure?')" method="post" style="display: none">
+            <input type="hidden" name="" value="">
+        </form>
+
+        <#list todoList as todo>
+            <tr>
+                <th scope="row">${todo.id}</th>
+                <td> ${todo.name}</td>
+                <td> ${todo.dueDate}</td>
+                <td> ${todo.priority}</td>
+                <td> <a href="/todolist/edit?id=${todo.id}&dueDate=${todo.dueDate}&name=${todo.name}&priority=${todo.priority}"> Edit</a> </td>
+                <td> <a href="/todolist/delete?id=${todo.id}" onclick="return confirm('Are you sure?')">
+                    <span class="fa fa-trash"></span> </a>
+
+                </td>
+            </tr>
+        </#list>
+        </tbody>
+    </table>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous">
+</script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  $('#todoList').DataTable();
+  //$('.dataTables_length').addClass('bs-select');
+});</script>
+
+</body>
+</html>
+

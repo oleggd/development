@@ -2,6 +2,7 @@ package com.study.onlineshop.web.servlet;
 
 import com.study.onlineshop.entity.Product;
 import com.study.onlineshop.service.ProductService;
+import com.study.onlineshop.service.SecurityService;
 import com.study.onlineshop.web.templater.PageGenerator;
 
 import javax.servlet.ServletException;
@@ -13,38 +14,40 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ProductAddServlet extends HttpServlet {
 
     private ProductService productService;
-    private List<String> activeTokens;
+    private SecurityService securityService;
+    private Map<String,String> activeTokens;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Cookie[] cookies = req.getCookies();
+        //Cookie[] cookies = req.getCookies();
         boolean isAuth = false;
+        PageGenerator pageGenerator = PageGenerator.instance();
 
-        if (cookies != null) {
+        if (securityService.isAuthorized(securityService.getCurrentUser().getRole(),"add")) {
+            String page = pageGenerator.getPage("product_add", null);
+            resp.getWriter().write(page);
+        } else {
+            String page = pageGenerator.getPage("auth_err", null);
+            resp.getWriter().write(page);
+            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        }
+        /*if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("user-token")) {
-                    if (activeTokens.contains(cookie.getValue())) {
-                        isAuth = true;
+                if (cookie.getName().equals("user-name")) {
+                    if (activeTokens.containsKey(cookie.getName())) {
+                        isAuth = true;//securityService.isAllowed(cookie.getValue(),"add");
                     }
                     break;
                 }
             }
-        }
+        }*/
 
-        if (isAuth) {
-            PageGenerator pageGenerator = PageGenerator.instance();
-            String page = pageGenerator.getPage("product_add", null);
-
-            resp.getWriter().write(page);
-
-        } else {
-            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        }
     }
 
     @Override
@@ -69,7 +72,9 @@ public class ProductAddServlet extends HttpServlet {
         this.productService = productService;
     }
 
-    public void setActiveTokens(List<String> activeTokens) {
+    public void setSecurityService(SecurityService securityService) { this.securityService = securityService; }
+
+    public void setActiveTokens(Map<String,String> activeTokens) {
         this.activeTokens = activeTokens;
     }
 }

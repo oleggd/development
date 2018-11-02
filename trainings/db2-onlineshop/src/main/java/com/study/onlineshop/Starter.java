@@ -1,47 +1,60 @@
 package com.study.onlineshop;
 
 import com.study.onlineshop.dao.jdbc.JdbcProductDao;
+import com.study.onlineshop.dao.jdbc.JdbcUserDao;
 import com.study.onlineshop.service.impl.DefaultProductService;
+import com.study.onlineshop.service.impl.DefaultSecurityService;
 import com.study.onlineshop.web.servlet.*;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Starter {
     public static void main(String[] args) throws Exception {
         // configure daos
         JdbcProductDao jdbcProductDao = new JdbcProductDao();
+        JdbcUserDao    jdbcUserDao    = new JdbcUserDao();
 
         // configure services
         DefaultProductService defaultProductService = new DefaultProductService(jdbcProductDao);
+        DefaultSecurityService defaultSecurityService = new DefaultSecurityService(jdbcUserDao);
 
         // store
-        List<String> activeTokens = new ArrayList<>();
+        Map<String,String> activeTokens = new HashMap<>();
 
         // servlets
+        LoginServlet         loginServlet         = new LoginServlet(activeTokens, defaultSecurityService);
+        LogoutServlet        logoutServlet        = new LogoutServlet(activeTokens, defaultSecurityService);
         ProductsServlet      productsServlet      = new ProductsServlet();
         ProductEditServlet   productEditServlet   = new ProductEditServlet();
         ProductAddServlet    productAddServlet    = new ProductAddServlet();
         ProductDeleteServlet productDeleteServlet = new ProductDeleteServlet();
 
         productsServlet.setProductService(defaultProductService);
+        productsServlet.setSecurityService(defaultSecurityService);
         productsServlet.setActiveTokens(activeTokens);
-        ProductsApiServlet productsApiServlet = new ProductsApiServlet(defaultProductService);
+        //ProductsApiServlet productsApiServlet = new ProductsApiServlet(defaultProductService);
         productEditServlet.setProductService(defaultProductService);
+        productEditServlet.setSecurityService(defaultSecurityService);
         productEditServlet.setActiveTokens(activeTokens);
         productAddServlet.setProductService(defaultProductService);
+        productAddServlet.setSecurityService(defaultSecurityService);
         productAddServlet.setActiveTokens(activeTokens);
         productDeleteServlet.setProductService(defaultProductService);
+        productDeleteServlet.setSecurityService(defaultSecurityService);
         productDeleteServlet.setActiveTokens(activeTokens);
 
         // config web server
         ServletContextHandler servletContextHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
         //login
         //servletContextHandler.addServlet(new ServletHolder(productsApiServlet), "/api/v1/products");
-        servletContextHandler.addServlet(new ServletHolder(new LoginServlet(activeTokens)), "/login");
+        servletContextHandler.addServlet(new ServletHolder(loginServlet), "/login");
+        servletContextHandler.addServlet(new ServletHolder(logoutServlet), "/logout");
         //other
         servletContextHandler.addServlet(new ServletHolder(productsServlet), "/products");
         servletContextHandler.addServlet(new ServletHolder(productsServlet), "/");

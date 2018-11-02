@@ -2,6 +2,7 @@ package com.study.onlineshop.web.servlet;
 
 import com.study.onlineshop.entity.Product;
 import com.study.onlineshop.service.ProductService;
+import com.study.onlineshop.service.SecurityService;
 import com.study.onlineshop.web.templater.PageGenerator;
 
 import javax.servlet.ServletException;
@@ -16,32 +17,23 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ProductEditServlet extends HttpServlet {
 
     private ProductService productService;
-    private List<String> activeTokens;
+    private SecurityService securityService;
+    private Map<String, String> activeTokens;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        PageGenerator pageGenerator = PageGenerator.instance();
+
+        System.out.println("Edit - current user :" + securityService.getCurrentUser());
         // security check
-        Cookie[] cookies = req.getCookies();
-        boolean isAuth = false;
+        if (securityService.isAuthorized(securityService.getCurrentUser().getRole(),"edit")) {
 
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("user-token")) {
-                    if (activeTokens.contains(cookie.getValue())) {
-                        isAuth = true;
-                    }
-                    break;
-                }
-            }
-        }
-
-        if (isAuth) {
-
-            PageGenerator pageGenerator = PageGenerator.instance();
             DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME.ofPattern("yyyy-MM-dd HH:mm:ss");	//2018-11-01T11:03
             HashMap<String, Object> parameters = new HashMap<>();
             Product product = new Product();
@@ -52,11 +44,8 @@ public class ProductEditServlet extends HttpServlet {
             LocalDateTime    creationDate = LocalDateTime.parse(req.getParameter("creationDate"));
             double price     = Double.parseDouble(req.getParameter("price"));
 
-            //Product product = new Product(Integer.parseInt(currentID), name, creationDate, price);
             product.setId(Integer.parseInt(currentID));
             product.setName(name);
-            //Timestamp creationDate = resultSet.getTimestamp("creation_date");
-            //product.setCreationDate(creationDate.toLocalDateTime());
             product.setCreationDate(creationDate);
             product.setPrice(price);
 
@@ -64,10 +53,26 @@ public class ProductEditServlet extends HttpServlet {
 
             String page = pageGenerator.getPage("product_edit", parameters);
             resp.getWriter().write(page);
-
         } else {
+            String page = pageGenerator.getPage("auth_err", null);
+            resp.getWriter().write(page);
             resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
+
+        /*Cookie[] cookies = req.getCookies();
+        boolean isAuth = false;
+
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("user-token")) {
+                    *//*if (activeTokens.contains(cookie.getValue())) {
+                        isAuth = true;
+                    }*//*
+                    break;
+                }
+            }
+        }*/
+
     }
 
     @Override
@@ -95,7 +100,10 @@ public class ProductEditServlet extends HttpServlet {
         this.productService = productService;
     }
 
-    public void setActiveTokens(List<String> activeTokens) {
+    public void setActiveTokens(Map<String, String> activeTokens) {
         this.activeTokens = activeTokens;
     }
+
+    public void setSecurityService(SecurityService securityService) { this.securityService = securityService;}
+
 }

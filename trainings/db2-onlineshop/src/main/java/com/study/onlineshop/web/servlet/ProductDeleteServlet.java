@@ -2,6 +2,8 @@ package com.study.onlineshop.web.servlet;
 
 import com.study.onlineshop.entity.Product;
 import com.study.onlineshop.service.ProductService;
+import com.study.onlineshop.service.SecurityService;
+import com.study.onlineshop.service.impl.DefaultSecurityService;
 import com.study.onlineshop.web.templater.PageGenerator;
 
 import javax.servlet.ServletException;
@@ -12,14 +14,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ProductDeleteServlet extends HttpServlet {
     private ProductService productService;
-    private List<String> activeTokens;
+    private SecurityService securityService;
+    private Map<String, String> activeTokens;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Cookie[] cookies = req.getCookies();
+
+        PageGenerator pageGenerator = PageGenerator.instance();
+
+        /*Cookie[] cookies = req.getCookies();
         boolean isAuth = false;
 
         /*if (cookies != null) {
@@ -33,31 +40,44 @@ public class ProductDeleteServlet extends HttpServlet {
             }
         }*/
 
-        //if (isAuth) {
+        if (securityService.isAuthorized(securityService.getCurrentUser().getRole(),"delete")) {
+
             Integer productID = Integer.parseInt(req.getParameter("id"));
         System.out.println("doGet : " + productID);
             productService.removeById(productID);
 
             resp.sendRedirect("/");
 
-        /*} else {
+        } else {
+            String page = pageGenerator.getPage("auth_err", null);
+            resp.getWriter().write(page);
             resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        }*/
-
-
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("doPost : /product/delete" );
+        PageGenerator pageGenerator = PageGenerator.instance();
+
+        if (securityService.isAuthorized(securityService.getCurrentUser().getRole(),"delete")) {
 
        resp.sendRedirect("/product/delete");
+
+        } else {
+            String page = pageGenerator.getPage("auth_err", null);
+            resp.getWriter().write(page);
+            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        }
     }
     public void setProductService(ProductService productService) {
         this.productService = productService;
     }
 
-    public void setActiveTokens(List<String> activeTokens) {
+    public void setActiveTokens(Map<String, String> activeTokens) {
         this.activeTokens = activeTokens;
+    }
+
+    public void setSecurityService(SecurityService securityService) {
+        this.securityService = securityService;
     }
 }

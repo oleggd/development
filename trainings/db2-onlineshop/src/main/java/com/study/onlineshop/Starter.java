@@ -2,6 +2,7 @@ package com.study.onlineshop;
 
 import com.study.onlineshop.dao.jdbc.JdbcProductDao;
 import com.study.onlineshop.dao.jdbc.JdbcUserDao;
+import com.study.onlineshop.entity.User;
 import com.study.onlineshop.service.impl.DefaultProductService;
 import com.study.onlineshop.service.impl.DefaultSecurityService;
 import com.study.onlineshop.web.servlet.*;
@@ -24,30 +25,30 @@ public class Starter {
         DefaultProductService defaultProductService = new DefaultProductService(jdbcProductDao);
         DefaultSecurityService defaultSecurityService = new DefaultSecurityService(jdbcUserDao);
 
-        // store
+        // store user-name + user-token
+        List<User> activeUserList = new ArrayList<>();
         Map<String,String> activeTokens = new HashMap<>();
 
         // servlets
-        LoginServlet         loginServlet         = new LoginServlet(activeTokens, defaultSecurityService);
-        LogoutServlet        logoutServlet        = new LogoutServlet(activeTokens, defaultSecurityService);
+        LoginServlet         loginServlet         = new LoginServlet(activeTokens, defaultSecurityService, activeUserList);
+        LogoutServlet        logoutServlet        = new LogoutServlet(activeTokens, defaultSecurityService, activeUserList);
         ProductsServlet      productsServlet      = new ProductsServlet();
         ProductEditServlet   productEditServlet   = new ProductEditServlet();
         ProductAddServlet    productAddServlet    = new ProductAddServlet();
         ProductDeleteServlet productDeleteServlet = new ProductDeleteServlet();
 
+        //
+        defaultSecurityService.setActiveUserInfo(activeTokens,activeUserList);
+        //
         productsServlet.setProductService(defaultProductService);
         productsServlet.setSecurityService(defaultSecurityService);
-        productsServlet.setActiveTokens(activeTokens);
         //ProductsApiServlet productsApiServlet = new ProductsApiServlet(defaultProductService);
         productEditServlet.setProductService(defaultProductService);
         productEditServlet.setSecurityService(defaultSecurityService);
-        productEditServlet.setActiveTokens(activeTokens);
         productAddServlet.setProductService(defaultProductService);
         productAddServlet.setSecurityService(defaultSecurityService);
-        productAddServlet.setActiveTokens(activeTokens);
         productDeleteServlet.setProductService(defaultProductService);
         productDeleteServlet.setSecurityService(defaultSecurityService);
-        productDeleteServlet.setActiveTokens(activeTokens);
 
         // config web server
         ServletContextHandler servletContextHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);

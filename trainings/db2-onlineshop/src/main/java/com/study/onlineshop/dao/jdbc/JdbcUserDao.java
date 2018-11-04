@@ -61,7 +61,6 @@ public class JdbcUserDao implements UserDao {
                     user = getUser(login);
                     return true;
                 }
-
             }
             return false;
         } catch (SQLException e) {

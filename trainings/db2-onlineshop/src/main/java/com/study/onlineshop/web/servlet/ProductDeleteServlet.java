@@ -1,6 +1,7 @@
 package com.study.onlineshop.web.servlet;
 
 import com.study.onlineshop.entity.Product;
+import com.study.onlineshop.entity.User;
 import com.study.onlineshop.service.ProductService;
 import com.study.onlineshop.service.SecurityService;
 import com.study.onlineshop.service.impl.DefaultSecurityService;
@@ -19,31 +20,17 @@ import java.util.Map;
 public class ProductDeleteServlet extends HttpServlet {
     private ProductService productService;
     private SecurityService securityService;
-    private Map<String, String> activeTokens;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        User currentUser = securityService.getCurrentUser(req);
         PageGenerator pageGenerator = PageGenerator.instance();
 
-        /*Cookie[] cookies = req.getCookies();
-        boolean isAuth = false;
-
-        /*if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("user-token")) {
-                    if (activeTokens.contains(cookie.getValue())) {
-                        isAuth = true;
-                    }
-                    break;
-                }
-            }
-        }*/
-
-        if (securityService.isAuthorized(securityService.getCurrentUser().getRole(),"delete")) {
+        if (currentUser != null && securityService.isAuthorized(currentUser.getRole(),"delete")) {
 
             Integer productID = Integer.parseInt(req.getParameter("id"));
-        System.out.println("doGet : " + productID);
+            System.out.println("doGet : " + productID);
             productService.removeById(productID);
 
             resp.sendRedirect("/");
@@ -57,11 +44,13 @@ public class ProductDeleteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        User currentUser = securityService.getCurrentUser(req);
         PageGenerator pageGenerator = PageGenerator.instance();
 
-        if (securityService.isAuthorized(securityService.getCurrentUser().getRole(),"delete")) {
+        if (currentUser != null && securityService.isAuthorized(currentUser.getRole(),"delete")) {
 
-       resp.sendRedirect("/product/delete");
+        resp.sendRedirect("/product/delete");
 
         } else {
             String page = pageGenerator.getPage("auth_err", null);
@@ -71,10 +60,6 @@ public class ProductDeleteServlet extends HttpServlet {
     }
     public void setProductService(ProductService productService) {
         this.productService = productService;
-    }
-
-    public void setActiveTokens(Map<String, String> activeTokens) {
-        this.activeTokens = activeTokens;
     }
 
     public void setSecurityService(SecurityService securityService) {

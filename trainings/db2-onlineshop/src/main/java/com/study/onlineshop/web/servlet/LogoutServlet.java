@@ -1,5 +1,6 @@
 package com.study.onlineshop.web.servlet;
 
+import com.study.onlineshop.entity.User;
 import com.study.onlineshop.service.SecurityService;
 import com.study.onlineshop.web.templater.PageGenerator;
 
@@ -10,16 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 public class LogoutServlet extends HttpServlet {
     private Map<String,String> activeTokens;
     private SecurityService securityService;
+    private List<User> activeUserList;
 
-    public LogoutServlet(Map<String, String> activeTokens, SecurityService securityService) {
+    public LogoutServlet(Map<String, String> activeTokens, SecurityService securityService, List<User> activeUserList) {
         this.activeTokens = activeTokens;
         this.securityService = securityService;
+        this.activeUserList = activeUserList;
     }
 
     public LogoutServlet(Map<String,String> activeTokens) {
@@ -34,8 +38,19 @@ public class LogoutServlet extends HttpServlet {
 
             resp.sendRedirect("/login");
             securityService.clearCurrentUser();
-            activeTokens.clear();
 
+            // get cookies
+            Cookie[] cookies = req.getCookies();
+            String userName = securityService.getToken(cookies,"user-name");
+            String userToken = securityService.getToken(cookies,"user-token");
+
+            if (userName != null && userToken != null) {
+                // remove it from activeTokens and userList
+                activeTokens.remove(userName,userToken);
+                activeUserList.remove(securityService.getUser(userName));
+            }
+
+            // clear cookies
             Cookie cookie = new Cookie("user-name", "");
             cookie.setMaxAge(0);
             resp.addCookie(cookie);
@@ -49,32 +64,10 @@ public class LogoutServlet extends HttpServlet {
             resp.getWriter().write(page);
             resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
-
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
-        System.out.println(login + " : " + password);
-
-        // if user is valid
-        if (securityService.isAuthenticated(login, password)) {
-
-            Cookie cookie = new Cookie("user-name", login);
-            activeTokens.put("user-name", login);
-            resp.addCookie(cookie);
-
-            // if user is valid
-            String userToken = UUID.randomUUID().toString();
-            cookie = new Cookie("user-token", userToken);
-            activeTokens.put("user_token", userToken);
-
-            resp.addCookie(cookie);
-            resp.sendRedirect("/");
-        } else {
-
-            resp.sendRedirect("/login");
-        }
+        resp.sendRedirect("/login");
     }
 }

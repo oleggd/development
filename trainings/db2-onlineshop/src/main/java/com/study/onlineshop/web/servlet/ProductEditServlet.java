@@ -1,6 +1,7 @@
 package com.study.onlineshop.web.servlet;
 
 import com.study.onlineshop.entity.Product;
+import com.study.onlineshop.entity.User;
 import com.study.onlineshop.service.ProductService;
 import com.study.onlineshop.service.SecurityService;
 import com.study.onlineshop.web.templater.PageGenerator;
@@ -23,16 +24,17 @@ public class ProductEditServlet extends HttpServlet {
 
     private ProductService productService;
     private SecurityService securityService;
-    private Map<String, String> activeTokens;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        User currentUser = securityService.getCurrentUser(req);
 
         PageGenerator pageGenerator = PageGenerator.instance();
 
         System.out.println("Edit - current user :" + securityService.getCurrentUser());
         // security check
-        if (securityService.isAuthorized(securityService.getCurrentUser().getRole(),"edit")) {
+        if (currentUser != null && securityService.isAuthorized(currentUser.getRole(),"edit")) {
 
             DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME.ofPattern("yyyy-MM-dd HH:mm:ss");	//2018-11-01T11:03
             HashMap<String, Object> parameters = new HashMap<>();
@@ -58,21 +60,6 @@ public class ProductEditServlet extends HttpServlet {
             resp.getWriter().write(page);
             resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
-
-        /*Cookie[] cookies = req.getCookies();
-        boolean isAuth = false;
-
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("user-token")) {
-                    *//*if (activeTokens.contains(cookie.getValue())) {
-                        isAuth = true;
-                    }*//*
-                    break;
-                }
-            }
-        }*/
-
     }
 
     @Override
@@ -98,10 +85,6 @@ public class ProductEditServlet extends HttpServlet {
 
     public void setProductService(ProductService productService) {
         this.productService = productService;
-    }
-
-    public void setActiveTokens(Map<String, String> activeTokens) {
-        this.activeTokens = activeTokens;
     }
 
     public void setSecurityService(SecurityService securityService) { this.securityService = securityService;}

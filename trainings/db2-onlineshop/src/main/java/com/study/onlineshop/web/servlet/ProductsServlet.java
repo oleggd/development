@@ -1,9 +1,9 @@
 package com.study.onlineshop.web.servlet;
 
 import com.study.onlineshop.entity.Product;
+import com.study.onlineshop.entity.User;
 import com.study.onlineshop.service.ProductService;
 import com.study.onlineshop.service.SecurityService;
-import com.study.onlineshop.service.impl.DefaultSecurityService;
 import com.study.onlineshop.web.templater.PageGenerator;
 
 import javax.servlet.ServletException;
@@ -19,26 +19,15 @@ import java.util.Map;
 public class ProductsServlet extends HttpServlet {
     private ProductService productService;
     private SecurityService securityService;
-    private Map<String, String> activeTokens;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        /*Cookie[] cookies = req.getCookies();
-        boolean isAuth = true;
 
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("user-token")) {
-                    if (activeTokens.contains(cookie.getValue())) {
-                        isAuth = true;
-                    }
-                    break;
-                }
-            }
-        }*/
+        User currentUser = securityService.getCurrentUser(req);
+
         PageGenerator pageGenerator = PageGenerator.instance();
 
-        if (securityService.isAuthorized(securityService.getCurrentUser().getRole(),"products")) {
+        if (currentUser != null && securityService.isAuthorized(currentUser.getRole(),"products")) {
             List<Product> products = productService.getAll();
 
             HashMap<String, Object> parameters = new HashMap<>();
@@ -57,11 +46,8 @@ public class ProductsServlet extends HttpServlet {
         this.productService = productService;
     }
 
-    public void setActiveTokens(Map<String, String> activeTokens) {
-        this.activeTokens = activeTokens;
-    }
-
     public void setSecurityService(SecurityService securityService) {
         this.securityService = securityService;
     }
+
 }

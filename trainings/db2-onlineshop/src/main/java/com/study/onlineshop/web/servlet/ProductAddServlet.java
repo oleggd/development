@@ -1,6 +1,7 @@
 package com.study.onlineshop.web.servlet;
 
 import com.study.onlineshop.entity.Product;
+import com.study.onlineshop.entity.User;
 import com.study.onlineshop.service.ProductService;
 import com.study.onlineshop.service.SecurityService;
 import com.study.onlineshop.web.templater.PageGenerator;
@@ -20,16 +21,14 @@ public class ProductAddServlet extends HttpServlet {
 
     private ProductService productService;
     private SecurityService securityService;
-    private Map<String,String> activeTokens;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        //Cookie[] cookies = req.getCookies();
-        boolean isAuth = false;
+        User currentUser = securityService.getCurrentUser(req);
         PageGenerator pageGenerator = PageGenerator.instance();
 
-        if (securityService.isAuthorized(securityService.getCurrentUser().getRole(),"add")) {
+        if (currentUser != null && securityService.isAuthorized(currentUser.getRole(),"add")) {
             String page = pageGenerator.getPage("product_add", null);
             resp.getWriter().write(page);
         } else {
@@ -37,17 +36,6 @@ public class ProductAddServlet extends HttpServlet {
             resp.getWriter().write(page);
             resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
-        /*if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("user-name")) {
-                    if (activeTokens.containsKey(cookie.getName())) {
-                        isAuth = true;//securityService.isAllowed(cookie.getValue(),"add");
-                    }
-                    break;
-                }
-            }
-        }*/
-
     }
 
     @Override
@@ -74,7 +62,4 @@ public class ProductAddServlet extends HttpServlet {
 
     public void setSecurityService(SecurityService securityService) { this.securityService = securityService; }
 
-    public void setActiveTokens(Map<String,String> activeTokens) {
-        this.activeTokens = activeTokens;
-    }
 }

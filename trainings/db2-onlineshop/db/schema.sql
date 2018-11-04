@@ -23,6 +23,7 @@ CREATE TABLE public.users (
     id            SERIAL                   NOT NULL,
     name          CHARACTER VARYING(255)   NOT NULL,
     password      CHARACTER VARYING(255)   NOT NULL,
+    sole          CHARACTER VARYING(255)   NOT NULL,
     creation_date TIMESTAMP WITH TIME ZONE NOT NULL,
     role          CHARACTER VARYING(255)   NOT NULL
 );

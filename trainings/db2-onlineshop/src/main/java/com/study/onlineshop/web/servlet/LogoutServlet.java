@@ -1,5 +1,6 @@
 package com.study.onlineshop.web.servlet;
 
+import com.study.onlineshop.entity.Session;
 import com.study.onlineshop.entity.User;
 import com.study.onlineshop.service.SecurityService;
 import com.study.onlineshop.web.templater.PageGenerator;
@@ -34,36 +35,11 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PageGenerator pageGenerator = PageGenerator.instance();
 
-        if (securityService.isAuthorized(securityService.getCurrentUser().getRole(),"logout")) {
+        HttpServletRequest httpServletRequest = (HttpServletRequest) req;
+        Cookie[] cookies = httpServletRequest.getCookies();
 
-            resp.sendRedirect("/login");
-            securityService.clearCurrentUser();
-
-            // get cookies
-            Cookie[] cookies = req.getCookies();
-            String userName = securityService.getToken(cookies,"user-name");
-            String userToken = securityService.getToken(cookies,"user-token");
-
-            if (userName != null && userToken != null) {
-                // remove it from activeTokens and userList
-                activeTokens.remove(userName,userToken);
-                activeUserList.remove(securityService.getUser(userName));
-            }
-
-            // clear cookies
-            Cookie cookie = new Cookie("user-name", "");
-            cookie.setMaxAge(0);
-            resp.addCookie(cookie);
-
-            cookie = new Cookie("user-token", "");
-            cookie.setMaxAge(0);
-            resp.addCookie(cookie);
-
-        } else {
-            String page = pageGenerator.getPage("auth_err", null);
-            resp.getWriter().write(page);
-            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        }
+        securityService.removeSession(cookies,"user-token");
+        resp.sendRedirect("/login");
     }
 
     @Override

@@ -5,8 +5,13 @@ import com.study.onlineshop.dao.jdbc.mapper.UserRowMapper;
 import com.study.onlineshop.entity.User;
 
 import java.sql.*;
+import java.util.Properties;
 
 public class JdbcUserDao implements UserDao {
+
+    String url = "";//"jdbc:postgresql://localhost/db2_onlineshop";
+    String name = "";//"postgres";
+    String password = "";//"1234";
 
     private User user;
 
@@ -16,13 +21,14 @@ public class JdbcUserDao implements UserDao {
 
     private static final UserRowMapper USER_ROW_MAPPER = new UserRowMapper();
 
-    public User getCurrentUser(){
-        return user;
+    public void setConnectionParameters(Properties properties) {
+        this.url = properties.getProperty("url");
+        this.name = properties.getProperty("user");
+        this.password = properties.getProperty("password");
     }
 
-    @Override
-    public void clearCurrentUser() {
-        user = null;
+    public User getCurrentUser(){
+        return user;
     }
 
     @Override //"SELECT id, name, creation_date, role FROM user WHERE name = ?"
@@ -69,7 +75,7 @@ public class JdbcUserDao implements UserDao {
         }
     }
 
-    @Override //"SELECT CASE WHEN COUNT(*) > 0 THEN 'Y' ELSE 'N' END IS_ALLOWED FROM PERMISSIONS WHERE (ROLE = ? OR ROLE = '%') AND OBJECT = ?;";
+    @Override //"SELECT CASE WHEN COUNT(*) > 0 THEN 'Y' ELSE 'N' END IS_ALLOWED FROM PERMISSIONS WHERE ROLE = ? AND OBJECT = ?;";
     public boolean isAuthorized(String role, String object) {
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(GET_PERMISSION_SQL);
@@ -92,10 +98,6 @@ public class JdbcUserDao implements UserDao {
     }
 
     private Connection getConnection() throws SQLException {
-        String url = "jdbc:postgresql://localhost/db2_onlineshop";
-        String name = "postgres";
-        String password = "1234";
-
         return DriverManager.getConnection(url, name, password);
     }
 }

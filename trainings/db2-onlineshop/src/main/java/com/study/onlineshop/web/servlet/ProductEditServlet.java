@@ -23,43 +23,32 @@ import java.util.Map;
 public class ProductEditServlet extends HttpServlet {
 
     private ProductService productService;
-    private SecurityService securityService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        User currentUser = securityService.getCurrentUser(req);
-
         PageGenerator pageGenerator = PageGenerator.instance();
 
-        System.out.println("Edit - current user :" + securityService.getCurrentUser());
         // security check
-        if (currentUser != null && securityService.isAuthorized(currentUser.getRole(),"edit")) {
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME.ofPattern("yyyy-MM-dd HH:mm:ss");    //2018-11-01T11:03
+        HashMap<String, Object> parameters = new HashMap<>();
+        Product product = new Product();
 
-            DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME.ofPattern("yyyy-MM-dd HH:mm:ss");	//2018-11-01T11:03
-            HashMap<String, Object> parameters = new HashMap<>();
-            Product product = new Product();
+        // get product for editing
+        String currentID = req.getParameter("id");
+        String name = req.getParameter("name");
+        LocalDateTime creationDate = LocalDateTime.parse(req.getParameter("creationDate"));
+        double price = Double.parseDouble(req.getParameter("price"));
 
-            // get product for editing
-            String currentID = req.getParameter("id");
-            String name      = req.getParameter("name");
-            LocalDateTime    creationDate = LocalDateTime.parse(req.getParameter("creationDate"));
-            double price     = Double.parseDouble(req.getParameter("price"));
+        product.setId(Integer.parseInt(currentID));
+        product.setName(name);
+        product.setCreationDate(creationDate);
+        product.setPrice(price);
 
-            product.setId(Integer.parseInt(currentID));
-            product.setName(name);
-            product.setCreationDate(creationDate);
-            product.setPrice(price);
+        parameters.put("product", product);
 
-            parameters.put("product", product);
-
-            String page = pageGenerator.getPage("product_edit", parameters);
-            resp.getWriter().write(page);
-        } else {
-            String page = pageGenerator.getPage("auth_err", null);
-            resp.getWriter().write(page);
-            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        }
+        String page = pageGenerator.getPage("product_edit", parameters);
+        resp.getWriter().write(page);
     }
 
     @Override
@@ -79,14 +68,12 @@ public class ProductEditServlet extends HttpServlet {
         product.setPrice(price);
         productService.set(product);
 
-        resp.sendRedirect("/");
+        resp.sendRedirect("/products");
     }
 
 
     public void setProductService(ProductService productService) {
         this.productService = productService;
     }
-
-    public void setSecurityService(SecurityService securityService) { this.securityService = securityService;}
 
 }

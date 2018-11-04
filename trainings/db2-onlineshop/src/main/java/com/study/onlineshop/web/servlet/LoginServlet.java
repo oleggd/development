@@ -1,5 +1,6 @@
 package com.study.onlineshop.web.servlet;
 
+import com.study.onlineshop.entity.Session;
 import com.study.onlineshop.entity.User;
 import com.study.onlineshop.service.SecurityService;
 import com.study.onlineshop.web.templater.PageGenerator;
@@ -43,22 +44,15 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
         System.out.println(login + " : " + password);
 
+        Session session = securityService.isAuthenticated(login, password);
+
         // if user is valid
-        if (securityService.isAuthenticated(login, password)) {
-
-            Cookie cookie = new Cookie("user-name", login);
+        if ( session != null ) {
+            Cookie cookie = new Cookie("user-token", session.getToken());
             resp.addCookie(cookie);
+            resp.sendRedirect("/products");
 
-            String userToken = UUID.randomUUID().toString();
-            cookie = new Cookie("user-token", userToken);
-            resp.addCookie(cookie);
-
-            activeTokens.put(login, userToken);
-            activeUserList.add(securityService.getUser(login));
-
-            resp.sendRedirect("/");
         } else {
-
             resp.sendRedirect("/login");
         }
     }

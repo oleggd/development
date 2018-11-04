@@ -19,50 +19,27 @@ import java.util.Map;
 
 public class ProductDeleteServlet extends HttpServlet {
     private ProductService productService;
-    private SecurityService securityService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        User currentUser = securityService.getCurrentUser(req);
         PageGenerator pageGenerator = PageGenerator.instance();
-
-        if (currentUser != null && securityService.isAuthorized(currentUser.getRole(),"delete")) {
 
             Integer productID = Integer.parseInt(req.getParameter("id"));
             System.out.println("doGet : " + productID);
             productService.removeById(productID);
 
-            resp.sendRedirect("/");
-
-        } else {
-            String page = pageGenerator.getPage("auth_err", null);
-            resp.getWriter().write(page);
-            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        }
+            resp.sendRedirect("/products");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        User currentUser = securityService.getCurrentUser(req);
         PageGenerator pageGenerator = PageGenerator.instance();
-
-        if (currentUser != null && securityService.isAuthorized(currentUser.getRole(),"delete")) {
-
         resp.sendRedirect("/product/delete");
-
-        } else {
-            String page = pageGenerator.getPage("auth_err", null);
-            resp.getWriter().write(page);
-            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        }
     }
     public void setProductService(ProductService productService) {
         this.productService = productService;
     }
 
-    public void setSecurityService(SecurityService securityService) {
-        this.securityService = securityService;
-    }
 }

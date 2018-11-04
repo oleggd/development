@@ -1,6 +1,7 @@
 package com.study.onlineshop.web.servlet;
 
 import com.study.onlineshop.entity.Product;
+import com.study.onlineshop.entity.Session;
 import com.study.onlineshop.entity.User;
 import com.study.onlineshop.service.ProductService;
 import com.study.onlineshop.service.SecurityService;
@@ -17,29 +18,25 @@ import java.util.List;
 import java.util.Map;
 
 public class ProductsServlet extends HttpServlet {
-    private ProductService productService;
+    private ProductService  productService;
     private SecurityService securityService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        User currentUser = securityService.getCurrentUser(req);
 
         PageGenerator pageGenerator = PageGenerator.instance();
+        List<Product> products = productService.getAll();
+        HashMap<String, Object> parameters = new HashMap<>();
 
-        if (currentUser != null && securityService.isAuthorized(currentUser.getRole(),"products")) {
-            List<Product> products = productService.getAll();
+        Cookie[] cookies = req.getCookies();
+        Session session = securityService.getSession(cookies,"user-token");
 
-            HashMap<String, Object> parameters = new HashMap<>();
-            parameters.put("products", products);
+        parameters.put("products", products);
+        parameters.put("disabled", session.getUser().getRole().equals("Admin")? "btn" : "btn disabled");
 
-            String page = pageGenerator.getPage("products", parameters);
-            resp.getWriter().write(page);
-        } else {
-            String page = pageGenerator.getPage("auth_err", null);
-            resp.getWriter().write(page);
-            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        }
+        String page = pageGenerator.getPage("products", parameters);
+        resp.getWriter().write(page);
     }
 
     public void setProductService(ProductService productService) {
@@ -49,5 +46,4 @@ public class ProductsServlet extends HttpServlet {
     public void setSecurityService(SecurityService securityService) {
         this.securityService = securityService;
     }
-
 }

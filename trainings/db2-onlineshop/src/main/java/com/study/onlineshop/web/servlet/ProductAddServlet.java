@@ -20,22 +20,14 @@ import java.util.Map;
 public class ProductAddServlet extends HttpServlet {
 
     private ProductService productService;
-    private SecurityService securityService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        User currentUser = securityService.getCurrentUser(req);
         PageGenerator pageGenerator = PageGenerator.instance();
 
-        if (currentUser != null && securityService.isAuthorized(currentUser.getRole(),"add")) {
-            String page = pageGenerator.getPage("product_add", null);
-            resp.getWriter().write(page);
-        } else {
-            String page = pageGenerator.getPage("auth_err", null);
-            resp.getWriter().write(page);
-            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        }
+        String page = pageGenerator.getPage("product_add", null);
+        resp.getWriter().write(page);
     }
 
     @Override
@@ -53,13 +45,11 @@ public class ProductAddServlet extends HttpServlet {
         product.setPrice(price);
         productService.add(product);
 
-        resp.sendRedirect("/");
+        resp.sendRedirect("/products");
     }
 
     public void setProductService(ProductService productService) {
         this.productService = productService;
     }
-
-    public void setSecurityService(SecurityService securityService) { this.securityService = securityService; }
 
 }

@@ -12,7 +12,7 @@
                         <a class="nav-link" href="/products">Product list<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link ${disabled}" href="/product/add">Add product</a>
+                        <a class="nav-link " href="/product/add">Add product</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">Logout</a>

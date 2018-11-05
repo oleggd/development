@@ -27,16 +27,18 @@ public class UserSecurityFilter implements Filter {
         Cookie[] cookies = httpServletRequest.getCookies();
         String   requestObject = httpServletRequest.getRequestURI().replaceFirst("^/", "");
         boolean isAuth = false;
-
         Session session = securityService.getSession(cookies, "user-token");
 
         if (session != null) {
-
             if ( securityService.isAuthorized(session.getUser().getRole(), requestObject) ) {
                 chain.doFilter(request, response);
             }
             else {
-               httpServletResponse.sendRedirect("/");
+                if ( requestObject.equals("products") || requestObject.equals("logout")) {
+                    httpServletResponse.sendRedirect("/login");
+                } else {
+                    httpServletResponse.sendRedirect("/");
+                }
             }
         }
     }

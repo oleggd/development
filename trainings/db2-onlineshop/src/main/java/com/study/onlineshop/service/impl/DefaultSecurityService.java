@@ -23,7 +23,6 @@ public class DefaultSecurityService implements SecurityService {
         return userDao.getUser(name);
     }
 
-
     public String getToken (Cookie[] cookies, String tokenName) {
 
         if (cookies != null) {

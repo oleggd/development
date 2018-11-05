@@ -29,8 +29,9 @@ public class PageGenerator {
 
     public String getPage(String filename, Map<String, Object> data) {
         Writer stream = new StringWriter();
+        cfg.setClassForTemplateLoading(this.getClass(), "/templates");
         try {
-            Template template = cfg.getTemplate(HTML_DIR + File.separator + filename + ".html");
+            Template template = cfg.getTemplate(/*HTML_DIR + File.separator + */filename + ".html");
             template.process(data, stream);
         } catch (IOException | TemplateException e) {
             throw new RuntimeException(e);

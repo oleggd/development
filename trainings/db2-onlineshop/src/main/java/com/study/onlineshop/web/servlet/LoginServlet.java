@@ -14,19 +14,10 @@ import java.io.IOException;
 import java.util.*;
 
 public class LoginServlet extends HttpServlet {
-    private Map<String,String> activeTokens;
     private SecurityService securityService;
-    List<User> activeUserList;
 
-
-    public LoginServlet(Map<String, String> activeTokens, SecurityService securityService, List<User> activeUserList) {
-        this.activeTokens = activeTokens;
+    public LoginServlet(SecurityService securityService) {
         this.securityService = securityService;
-        this.activeUserList = activeUserList;
-    }
-
-    public LoginServlet(Map<String,String> activeTokens) {
-        this.activeTokens = activeTokens;
     }
 
     @Override

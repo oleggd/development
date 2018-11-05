@@ -17,18 +17,10 @@ import java.util.Map;
 import java.util.UUID;
 
 public class LogoutServlet extends HttpServlet {
-    private Map<String,String> activeTokens;
     private SecurityService securityService;
-    private List<User> activeUserList;
 
-    public LogoutServlet(Map<String, String> activeTokens, SecurityService securityService, List<User> activeUserList) {
-        this.activeTokens = activeTokens;
+    public LogoutServlet(SecurityService securityService) {
         this.securityService = securityService;
-        this.activeUserList = activeUserList;
-    }
-
-    public LogoutServlet(Map<String,String> activeTokens) {
-        this.activeTokens = activeTokens;
     }
 
     @Override

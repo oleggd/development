@@ -1,0 +1,14 @@
+<beans>
+    <bean id="testProductID" class="testProductClass">
+        <property name="id" value="1"></property>
+        <property name="name" value="Product1"></property>
+    </bean>
+    <bean id="testUserID" class="testUserClass">
+        <property name="id" value="1"></property>
+        <property name="name" value="user1"></property>
+    </bean>
+    <bean id="testRoleID" class="testRoleClass">
+        <property name="id"   value="1"></property>
+        <property name="role" ref="testUserID"></property>
+    </bean>
+</beans>

@@ -16,6 +16,7 @@ import org.eclipse.jetty.servlet.ServletHolder;
 
 import javax.servlet.DispatcherType;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.*;
 
 public class Starter {
@@ -26,8 +27,10 @@ public class Starter {
 
         String filename = "app.properties";
         Properties appProps = new Properties();
-        //appProps.load(Starter.class.getClass().getClassLoader().getResourceAsStream(filename));
-        appProps.load(Starter.class.getClassLoader().getResourceAsStream(filename));
+
+        try (InputStream aapFile = Starter.class.getClassLoader().getResourceAsStream(filename);){
+            appProps.load(aapFile);
+        }
         jdbcUserDao.setConnectionParameters(appProps);
 
         // configure services
@@ -39,8 +42,8 @@ public class Starter {
         Map<String,String> activeTokens = new HashMap<>();
 
         // servlets
-        LoginServlet         loginServlet         = new LoginServlet(activeTokens, defaultSecurityService, activeUserList);
-        LogoutServlet        logoutServlet        = new LogoutServlet(activeTokens, defaultSecurityService, activeUserList);
+        LoginServlet         loginServlet         = new LoginServlet(defaultSecurityService);
+        LogoutServlet        logoutServlet        = new LogoutServlet(defaultSecurityService);
         ProductsServlet      productsServlet      = new ProductsServlet();
         ProductEditServlet   productEditServlet   = new ProductEditServlet();
         ProductAddServlet    productAddServlet    = new ProductAddServlet();
@@ -61,22 +64,27 @@ public class Starter {
         //login
         //servletContextHandler.addServlet(new ServletHolder(productsApiServlet), "/api/v1/products");
         servletContextHandler.addServlet(new ServletHolder(loginServlet), "/login");
-        FilterHolder userHolder = new FilterHolder(new UserSecurityFilter(defaultSecurityService));
-        servletContextHandler.addFilter(userHolder, "/logout",EnumSet.of(DispatcherType.REQUEST));
         servletContextHandler.addServlet(new ServletHolder(logoutServlet), "/logout");
         //other
-        FilterHolder productHolder = new FilterHolder(new ProductSecurityFilter(defaultSecurityService));
-        servletContextHandler.addFilter(productHolder, "/products",EnumSet.of(DispatcherType.REQUEST));
+        servletContextHandler.addServlet(new ServletHolder(productsServlet), "/");
         servletContextHandler.addServlet(new ServletHolder(productsServlet), "/products");
-        //servletContextHandler.addServlet(new ServletHolder(productsServlet), "/");
+        servletContextHandler.addServlet(new ServletHolder(productEditServlet), "/product/edit");
+        servletContextHandler.addServlet(new ServletHolder(productAddServlet), "/product/add");
+        servletContextHandler.addServlet(new ServletHolder(productDeleteServlet), "/product/delete");
+
+
         FilterHolder adminHolder = new FilterHolder(new AdminSecurityFilter(defaultSecurityService));
+        FilterHolder userHolder  = new FilterHolder(new UserSecurityFilter(defaultSecurityService));
+        FilterHolder productHolder = new FilterHolder(new ProductSecurityFilter(defaultSecurityService));
+
+        servletContextHandler.addFilter(userHolder, "/logout",EnumSet.of(DispatcherType.REQUEST));
+        servletContextHandler.addFilter(userHolder, "/",EnumSet.of(DispatcherType.REQUEST));
+        servletContextHandler.addFilter(userHolder, "/products",EnumSet.of(DispatcherType.REQUEST));
         //servletContextHandler.addFilter(adminHolder, "/products",EnumSet.of(DispatcherType.REQUEST));
         servletContextHandler.addFilter(adminHolder, "/product/edit",EnumSet.of(DispatcherType.REQUEST));
         servletContextHandler.addFilter(adminHolder, "/product/add",EnumSet.of(DispatcherType.REQUEST));
         servletContextHandler.addFilter(adminHolder, "/product/delete",EnumSet.of(DispatcherType.REQUEST));
-        servletContextHandler.addServlet(new ServletHolder(productEditServlet), "/product/edit");
-        servletContextHandler.addServlet(new ServletHolder(productAddServlet), "/product/add");
-        servletContextHandler.addServlet(new ServletHolder(productDeleteServlet), "/product/delete");
+
 
         Server server = new Server(8081);
         server.setHandler(servletContextHandler);

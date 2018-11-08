@@ -3,10 +3,11 @@ package com.study.ioccontainer;
 import com.study.ioccontainer.service.ApplicationContext;
 import com.study.ioccontainer.service.impl.ClassPathApplicationContext;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class Starter {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         ApplicationContext applicationContext = new ClassPathApplicationContext("testContextFile.xml");
-
     }
 }

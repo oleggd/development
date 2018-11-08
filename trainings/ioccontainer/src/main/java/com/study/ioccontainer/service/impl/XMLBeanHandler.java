@@ -18,6 +18,7 @@ public class XMLBeanHandler  extends DefaultHandler {
     private Map<String,String> propertyValues;
     private Map<String,String> propertyRefs;
 
+    boolean bBean = false;
     boolean bPropertyValue = false;
     boolean bPropertyRef = false;
 
@@ -29,7 +30,7 @@ public class XMLBeanHandler  extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 
         if (qName.equalsIgnoreCase("bean")) {
-
+            bBean = true;
             beanDefinition = new BeanDefinition();
             beanDefinition.setId(attributes.getValue("id"));
             beanDefinition.setClassName(attributes.getValue("class"));
@@ -59,14 +60,17 @@ public class XMLBeanHandler  extends DefaultHandler {
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        if (qName.equalsIgnoreCase("bean")) {
+        if (qName.equalsIgnoreCase("bean") && bBean) {
             //add bean object to list
             beanDefinitionList.add(beanDefinition);
+            bBean = false;
+            propertyValues = null;
+            propertyRefs = null;
         } else if (qName.equalsIgnoreCase("property") && bPropertyValue) {
             beanDefinition.setValuesDependencies(propertyValues);
             bPropertyValue = false;
         } else if (qName.equalsIgnoreCase("property") && bPropertyRef) {
-            beanDefinition.setValuesDependencies(propertyRefs);
+            beanDefinition.setRefDependencies(propertyRefs);
             bPropertyRef = false;
         }
     }

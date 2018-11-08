@@ -32,6 +32,9 @@ public class BeanDefinition {
         return valuesDependencies;
     }
 
+    public Map<String, String> getRefDependencies() {
+        return refDependencies;
+    }
     public void setRefDependencies(Map<String, String> refDependencies) {
         this.refDependencies = refDependencies;
     }

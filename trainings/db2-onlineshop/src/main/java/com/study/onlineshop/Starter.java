@@ -3,6 +3,7 @@ package com.study.onlineshop;
 import com.study.onlineshop.dao.jdbc.JdbcProductDao;
 import com.study.onlineshop.dao.jdbc.JdbcUserDao;
 import com.study.onlineshop.entity.User;
+import com.study.onlineshop.service.impl.DefaultCartService;
 import com.study.onlineshop.service.impl.DefaultProductService;
 import com.study.onlineshop.service.impl.DefaultSecurityService;
 import com.study.onlineshop.web.filters.AdminSecurityFilter;
@@ -34,12 +35,11 @@ public class Starter {
         jdbcUserDao.setConnectionParameters(appProps);
 
         // configure services
-        DefaultProductService defaultProductService = new DefaultProductService(jdbcProductDao);
+        DefaultProductService defaultProductService   = new DefaultProductService(jdbcProductDao);
         DefaultSecurityService defaultSecurityService = new DefaultSecurityService(jdbcUserDao);
+        DefaultCartService defaultCartService         = new DefaultCartService(defaultSecurityService);
 
         // store user-name + user-token
-        List<User> activeUserList = new ArrayList<>();
-        Map<String,String> activeTokens = new HashMap<>();
 
         // servlets
         LoginServlet         loginServlet         = new LoginServlet(defaultSecurityService);
@@ -48,16 +48,24 @@ public class Starter {
         ProductEditServlet   productEditServlet   = new ProductEditServlet();
         ProductAddServlet    productAddServlet    = new ProductAddServlet();
         ProductDeleteServlet productDeleteServlet = new ProductDeleteServlet();
+        CartServlet          cartServlet          = new CartServlet();
+        CartAddServlet       cartAddServlet       = new CartAddServlet();
+        CartDeleteServlet    cartDeleteServlet    = new CartDeleteServlet();
 
         //
         //defaultSecurityService.setActiveUserInfo(activeTokens,activeUserList);
-        //
         productsServlet.setProductService(defaultProductService);
         productsServlet.setSecurityService(defaultSecurityService);
         //ProductsApiServlet productsApiServlet = new ProductsApiServlet(defaultProductService);
         productEditServlet.setProductService(defaultProductService);
         productAddServlet.setProductService(defaultProductService);
         productDeleteServlet.setProductService(defaultProductService);
+        cartServlet.setSecurityService(defaultSecurityService);
+        cartServlet.setCartService(defaultCartService);
+        cartAddServlet.setSecurityService(defaultSecurityService);
+        cartAddServlet.setProductService(defaultProductService);
+        cartAddServlet.setSecurityService(defaultSecurityService);
+        cartAddServlet.setProductService(defaultProductService);
 
         // config web server
         ServletContextHandler servletContextHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
@@ -71,7 +79,9 @@ public class Starter {
         servletContextHandler.addServlet(new ServletHolder(productEditServlet), "/product/edit");
         servletContextHandler.addServlet(new ServletHolder(productAddServlet), "/product/add");
         servletContextHandler.addServlet(new ServletHolder(productDeleteServlet), "/product/delete");
-
+        servletContextHandler.addServlet(new ServletHolder(cartServlet), "/cart");
+        servletContextHandler.addServlet(new ServletHolder(cartAddServlet), "/cart/add");
+        servletContextHandler.addServlet(new ServletHolder(cartDeleteServlet), "/cart/delete");
 
         FilterHolder adminHolder = new FilterHolder(new AdminSecurityFilter(defaultSecurityService));
         FilterHolder userHolder  = new FilterHolder(new UserSecurityFilter(defaultSecurityService));
@@ -80,6 +90,9 @@ public class Starter {
         servletContextHandler.addFilter(userHolder, "/logout",EnumSet.of(DispatcherType.REQUEST));
         servletContextHandler.addFilter(userHolder, "/",EnumSet.of(DispatcherType.REQUEST));
         servletContextHandler.addFilter(userHolder, "/products",EnumSet.of(DispatcherType.REQUEST));
+        servletContextHandler.addFilter(userHolder, "/cart",EnumSet.of(DispatcherType.REQUEST));
+        servletContextHandler.addFilter(userHolder, "/cart/add",EnumSet.of(DispatcherType.REQUEST));
+        servletContextHandler.addFilter(userHolder, "/cart/delete",EnumSet.of(DispatcherType.REQUEST));
         //servletContextHandler.addFilter(adminHolder, "/products",EnumSet.of(DispatcherType.REQUEST));
         servletContextHandler.addFilter(adminHolder, "/product/edit",EnumSet.of(DispatcherType.REQUEST));
         servletContextHandler.addFilter(adminHolder, "/product/add",EnumSet.of(DispatcherType.REQUEST));

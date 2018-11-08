@@ -25,7 +25,10 @@ public class UserSecurityFilter implements Filter {
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 
         Cookie[] cookies = httpServletRequest.getCookies();
-        String   requestObject = httpServletRequest.getRequestURI().replaceFirst("^/", "");
+        String requestObject = httpServletRequest.getRequestURI();
+        if (!requestObject.equals("/")) {
+            requestObject = httpServletRequest.getRequestURI().replaceFirst("^/", "");
+        }
         boolean isAuth = false;
         Session session = securityService.getSession(cookies, "user-token");
 

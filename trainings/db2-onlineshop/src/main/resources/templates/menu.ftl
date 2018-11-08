@@ -15,6 +15,9 @@
                         <a class="nav-link " href="/product/add">Add product</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link " href="/cart">Cart</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/logout">Logout</a>
                     </li>
                 </ul>

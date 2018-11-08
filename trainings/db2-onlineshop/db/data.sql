@@ -13,13 +13,9 @@ INSERT INTO public.product(id, name, creation_date, price) VALUES (nextval('publ
 
 TRUNCATE TABLE public.users;
 
-INSERT INTO public.users(id, name, password, creation_date, role) VALUES (nextval('public.user_id_seq'), 'User1', 'pass1', 'solepass1', to_timestamp('01-10-2018 13:00:00', 'dd-mm-yyyy hh24:mi:ss'), 'User');
-INSERT INTO public.users(id, name, password, creation_date, role) VALUES (nextval('public.user_id_seq'), 'User2', 'pass2', 'solepass2', to_timestamp('02-10-2018 14:00:00', 'dd-mm-yyyy hh24:mi:ss'), 'Admin');
-INSERT INTO public.users(id, name, password, creation_date, role) VALUES (nextval('public.user_id_seq'), 'User3', 'pass3', 'solepass3', to_timestamp('02-10-2018 15:00:00', 'dd-mm-yyyy hh24:mi:ss'), 'Guest');
-
-
-
-
+INSERT INTO public.users(id, name, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'), 'User1', 'pass1', 'solepass1', to_timestamp('01-10-2018 13:00:00', 'dd-mm-yyyy hh24:mi:ss'), 'User');
+INSERT INTO public.users(id, name, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'), 'User2', 'pass2', 'solepass2', to_timestamp('02-10-2018 14:00:00', 'dd-mm-yyyy hh24:mi:ss'), 'Admin');
+INSERT INTO public.users(id, name, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'), 'User3', 'pass3', 'solepass3', to_timestamp('02-10-2018 15:00:00', 'dd-mm-yyyy hh24:mi:ss'), 'Guest');
 
 TRUNCATE TABLE public.permissions;
 
@@ -28,9 +24,15 @@ INSERT INTO public.permissions(id, role, object, creation_date) VALUES (nextval(
 INSERT INTO public.permissions(id, role, object, creation_date) VALUES (nextval('public.permission_id_seq'), 'User',  'login', to_timestamp('01-10-2018 13:00:00', 'dd-mm-yyyy hh24:mi:ss'));
 INSERT INTO public.permissions(id, role, object, creation_date) VALUES (nextval('public.permission_id_seq'), 'User',  'logout', to_timestamp('01-10-2018 13:00:00', 'dd-mm-yyyy hh24:mi:ss'));
 INSERT INTO public.permissions(id, role, object, creation_date) VALUES (nextval('public.permission_id_seq'), 'User',  'products', to_timestamp('01-10-2018 13:00:00', 'dd-mm-yyyy hh24:mi:ss'));
+INSERT INTO public.permissions(id, role, object, creation_date) VALUES (nextval('public.permission_id_seq'), 'User',  '/', to_timestamp('01-10-2018 13:00:00', 'dd-mm-yyyy hh24:mi:ss'));
+INSERT INTO public.permissions(id, role, object, creation_date) VALUES (nextval('public.permission_id_seq'), 'User',  'cart', to_timestamp('01-10-2018 13:00:00', 'dd-mm-yyyy hh24:mi:ss'));
+INSERT INTO public.permissions(id, role, object, creation_date) VALUES (nextval('public.permission_id_seq'), 'User',  'cart/add', to_timestamp('01-10-2018 13:00:00', 'dd-mm-yyyy hh24:mi:ss'));
 INSERT INTO public.permissions(id, role, object, creation_date) VALUES (nextval('public.permission_id_seq'), 'Admin', 'login', to_timestamp('01-10-2018 13:00:00', 'dd-mm-yyyy hh24:mi:ss'));
 INSERT INTO public.permissions(id, role, object, creation_date) VALUES (nextval('public.permission_id_seq'), 'Admin', 'logout', to_timestamp('01-10-2018 13:00:00', 'dd-mm-yyyy hh24:mi:ss'));
 INSERT INTO public.permissions(id, role, object, creation_date) VALUES (nextval('public.permission_id_seq'), 'Admin', 'products', to_timestamp('01-10-2018 13:00:00', 'dd-mm-yyyy hh24:mi:ss'));
+INSERT INTO public.permissions(id, role, object, creation_date) VALUES (nextval('public.permission_id_seq'), 'Admin', '/', to_timestamp('01-10-2018 13:00:00', 'dd-mm-yyyy hh24:mi:ss'));
 INSERT INTO public.permissions(id, role, object, creation_date) VALUES (nextval('public.permission_id_seq'), 'Admin', 'add', to_timestamp('01-10-2018 13:00:00', 'dd-mm-yyyy hh24:mi:ss'));
 INSERT INTO public.permissions(id, role, object, creation_date) VALUES (nextval('public.permission_id_seq'), 'Admin', 'edit', to_timestamp('01-10-2018 13:00:00', 'dd-mm-yyyy hh24:mi:ss'));
 INSERT INTO public.permissions(id, role, object, creation_date) VALUES (nextval('public.permission_id_seq'), 'Admin', 'delete', to_timestamp('01-10-2018 13:00:00', 'dd-mm-yyyy hh24:mi:ss'));
+INSERT INTO public.permissions(id, role, object, creation_date) VALUES (nextval('public.permission_id_seq'), 'Admin', 'cart', to_timestamp('01-10-2018 13:00:00', 'dd-mm-yyyy hh24:mi:ss'));
+INSERT INTO public.permissions(id, role, object, creation_date) VALUES (nextval('public.permission_id_seq'), 'Admin', 'cart/add', to_timestamp('01-10-2018 13:00:00', 'dd-mm-yyyy hh24:mi:ss'));

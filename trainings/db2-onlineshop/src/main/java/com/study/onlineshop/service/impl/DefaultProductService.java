@@ -32,4 +32,9 @@ public class DefaultProductService implements ProductService {
     public void removeById(int id) {
         productDao.removeById(id);
     }
+
+    @Override
+    public Product getProduct(int id) {
+        return productDao.getProduct(id);
+    }
 }

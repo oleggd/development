@@ -8,14 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface SecurityService {
 
-   //void clearCurrentUser();
-
-   //User getCurrentUser();
-
-   //User getCurrentUserByToken(String userName, String userToken);
-
-   //User getCurrentUser(HttpServletRequest req);
-
    User getUser(String name);
 
    String getToken (Cookie[] cookies, String tokenName);

@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class DefaultSecurityService implements SecurityService {
+
     private UserDao userDao;
     private List<Session> sessionList = new ArrayList<>();
 
@@ -85,8 +86,8 @@ public class DefaultSecurityService implements SecurityService {
    }
 
     @Override
-    public boolean isAuthorized(String login, String password) {
-        return userDao.isAuthorized(login, password);
+    public boolean isAuthorized(String login, String object) {
+        return userDao.isAuthorized(login, object);
     }
 
     @Override

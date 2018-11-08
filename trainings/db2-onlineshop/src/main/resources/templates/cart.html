@@ -10,7 +10,7 @@
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Products</title>
+    <title>Cart</title>
 </head>
 <body>
     <div> <#include "menu.ftl"/> </div>
@@ -19,18 +19,16 @@
         <br>
         <br>
 
-        <h1 class="align-center">Product list</h1>
+        <h1 class="align-center">Cart product list</h1>
 
-        <table id="productList" class="table table-bordered table-striped">
+        <table id="cart" class="table table-bordered table-striped">
             <thead>
             <tr>
                 <th scope="col">Id <i class="fa fa-sort float-right" aria-hidden="true"></i> </th>
                 <th scope="col">Name</th>
                 <th scope="col">Creation date</th>
                 <th scope="col">Price</th>
-                <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
-                <th scope="col">AddToCart</th>
             </tr>
             </thead>
             <tbody>
@@ -40,12 +38,8 @@
                     <td>${product.name}</td>
                     <td>${product.creationDate}</td>
                     <td>${product.price}</td>
-                    <td> <a class="${disabled}" href="/product/edit?id=${product.id}&name=${product.name}&creationDate=${product.creationDate}&price=${product.price}">Edit</a> </td>
-                    <td> <a class="${disabled}"  href="/product/delete?id=${product.id}" onclick="return confirm('Are you sure?')">
+                    <td> <a class="${disabled}"  href="/cart/delete?id=${product.id}" onclick="return confirm('Are you sure?')">
                         <span class="fa fa-trash"></span> </a>
-                    </td>
-                    <td> <a class="${cartDisabled}"  href="/cart/add?id=${product.id}" onclick="return confirm('Are you sure?')">
-                        <span class="fa fa-cart-plus"></span> </a>
                     </td>
                 </tr>
             </#list>

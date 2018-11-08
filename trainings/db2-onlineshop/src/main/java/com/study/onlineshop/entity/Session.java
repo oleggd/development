@@ -10,7 +10,7 @@ public class Session {
     private String token;
     private User user;
     private LocalDateTime expireDate;
-    private List<Product> cart;
+    private Cart cart;
 
     public LocalDateTime getExpireDate() {
         return expireDate;
@@ -28,12 +28,14 @@ public class Session {
         this.token = token;
     }
 
-    public User getUser() {
-        return user;
-    }
+    public User getUser() { return user;}
 
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Cart getCart() { return cart; }
+
+    public void setCart(Cart cart) { this.cart = cart; }
 
 }

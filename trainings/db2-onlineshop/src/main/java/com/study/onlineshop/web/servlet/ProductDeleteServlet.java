@@ -25,11 +25,11 @@ public class ProductDeleteServlet extends HttpServlet {
 
         PageGenerator pageGenerator = PageGenerator.instance();
 
-            Integer productID = Integer.parseInt(req.getParameter("id"));
-            System.out.println("doGet : " + productID);
-            productService.removeById(productID);
+        Integer productID = Integer.parseInt(req.getParameter("id"));
+        System.out.println("doGet : " + productID);
+        productService.removeById(productID);
 
-            resp.sendRedirect("/products");
+        resp.sendRedirect("/products");
     }
 
     @Override

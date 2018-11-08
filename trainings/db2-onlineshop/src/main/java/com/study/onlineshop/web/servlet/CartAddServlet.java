@@ -3,7 +3,7 @@ package com.study.onlineshop.web.servlet;
 import com.study.onlineshop.entity.Cart;
 import com.study.onlineshop.entity.Product;
 import com.study.onlineshop.entity.Session;
-import com.study.onlineshop.entity.User;
+import com.study.onlineshop.service.CartService;
 import com.study.onlineshop.service.ProductService;
 import com.study.onlineshop.service.SecurityService;
 import com.study.onlineshop.web.templater.PageGenerator;
@@ -14,31 +14,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class ProductsServlet extends HttpServlet {
-    private ProductService  productService;
+public class CartAddServlet extends HttpServlet {
     private SecurityService securityService;
+    private ProductService  productService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        PageGenerator pageGenerator = PageGenerator.instance();
-        List<Product> products = productService.getAll();
-        //Cart cart = cartService.getAll
-        HashMap<String, Object> parameters = new HashMap<>();
+        int productID = Integer.parseInt(req.getParameter("id"));
+        Product product = productService.getProduct(productID);
 
         Cookie[] cookies = req.getCookies();
         Session session = securityService.getSession(cookies,"user-token");
 
-        parameters.put("products", products);
-        parameters.put("disabled", session.getUser().getRole().equals("Admin")? "btn" : "btn disabled");
-        parameters.put("cartDisabled", session.getUser().getRole().equals("User")? "btn" : "btn disabled");
+        Cart cart = session.getCart();
+        if ( cart == null) {
+            cart = new Cart();
+        }
+        cart.getProducts().add(product);
+        session.setCart(cart);
 
-        String page = pageGenerator.getPage("products", parameters);
-        resp.getWriter().write(page);
+        System.out.println("cartAdd doGet : " + productID);
+
+        resp.sendRedirect("/products");
     }
 
     public void setProductService(ProductService productService) {

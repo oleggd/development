@@ -14,4 +14,6 @@ public interface ProductDao {
     void add(Product product);
 
     void removeById(int id);
+
+    Product getProduct(int id);
 }

@@ -5,6 +5,7 @@ import com.study.onlineshop.entity.Product;
 import com.study.onlineshop.entity.Session;
 import com.study.onlineshop.service.ProductService;
 import com.study.onlineshop.service.SecurityService;
+import com.study.onlineshop.web.templater.PageGenerator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -37,6 +38,7 @@ public class CartDeleteServlet extends HttpServlet {
             product = (Product) iterator.next();
             if (product.getId() == productID) {
                 iterator.remove();
+                break;
             }
         }
         session.setCart(cart);
@@ -46,9 +48,12 @@ public class CartDeleteServlet extends HttpServlet {
         resp.sendRedirect("/cart");
     }
 
-    //public void setProductService(ProductService productService) {
-    //    this.productService = productService;
-    //}
+    /*@Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        PageGenerator pageGenerator = PageGenerator.instance();
+        resp.sendRedirect("/cart/delete");
+    }*/
 
     public void setSecurityService(SecurityService securityService) {
         this.securityService = securityService;

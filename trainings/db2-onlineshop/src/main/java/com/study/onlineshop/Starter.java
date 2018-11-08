@@ -66,6 +66,7 @@ public class Starter {
         cartAddServlet.setProductService(defaultProductService);
         cartAddServlet.setSecurityService(defaultSecurityService);
         cartAddServlet.setProductService(defaultProductService);
+        cartDeleteServlet.setSecurityService(defaultSecurityService);
 
         // config web server
         ServletContextHandler servletContextHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);

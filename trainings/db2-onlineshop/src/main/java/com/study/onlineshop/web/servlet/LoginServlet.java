@@ -33,7 +33,6 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        System.out.println(login + " : " + password);
 
         Session session = securityService.isAuthenticated(login, password);
 

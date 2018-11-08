@@ -5,6 +5,7 @@ import java.util.Map;
 public class BeanDefinition {
     private String id ="";
     private String className ="";
+
     private Map<String,String> valuesDependencies = null;
     private Map<String,String> refDependencies = null;
 
@@ -26,6 +27,9 @@ public class BeanDefinition {
 
     public void setValuesDependencies(Map<String, String> valuesDependencies) {
         this.valuesDependencies = valuesDependencies;
+    }
+    public Map<String, String> getValuesDependencies() {
+        return valuesDependencies;
     }
 
     public void setRefDependencies(Map<String, String> refDependencies) {

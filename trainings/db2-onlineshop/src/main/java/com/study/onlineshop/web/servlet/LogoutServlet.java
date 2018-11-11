@@ -3,6 +3,8 @@ package com.study.onlineshop.web.servlet;
 import com.study.onlineshop.entity.Session;
 import com.study.onlineshop.entity.User;
 import com.study.onlineshop.service.SecurityService;
+import com.study.onlineshop.service.ServiceLocator;
+import com.study.onlineshop.service.impl.DefaultSecurityService;
 import com.study.onlineshop.web.templater.PageGenerator;
 
 import javax.servlet.ServletException;
@@ -17,10 +19,10 @@ import java.util.Map;
 import java.util.UUID;
 
 public class LogoutServlet extends HttpServlet {
-    private SecurityService securityService;
+    private SecurityService securityService = ServiceLocator.getService(SecurityService.class);
 
-    public LogoutServlet(SecurityService securityService) {
-        this.securityService = securityService;
+    public LogoutServlet(/*SecurityService securityService*/) {
+        //this.securityService = securityService;
     }
 
     @Override

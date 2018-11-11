@@ -14,7 +14,7 @@ public class XMLBeanHandler  extends DefaultHandler {
 
     private BeanDefinition beanDefinition = null;
 
-    private List<BeanDefinition> beanDefinitionList = null;
+    private List<BeanDefinition> beanDefinitionList;
     private Map<String,String> propertyValues;
     private Map<String,String> propertyRefs;
 

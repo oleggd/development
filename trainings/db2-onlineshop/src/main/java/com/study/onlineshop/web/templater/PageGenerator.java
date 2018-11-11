@@ -1,6 +1,6 @@
 package com.study.onlineshop.web.templater;
 
-import com.study.onlineshop.Starter;
+//import com.study.onlineshop.Starter;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;

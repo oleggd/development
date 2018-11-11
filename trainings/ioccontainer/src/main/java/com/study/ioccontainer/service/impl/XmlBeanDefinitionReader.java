@@ -46,24 +46,4 @@ import java.util.List;
          return beanDefinitionList;
      }
 
-     /*public static void main(String[] args) {
-
-        SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
-
-         try {
-             SAXParser saxParser = saxParserFactory.newSAXParser();
-             XMLBeanHandler handler = new XMLBeanHandler();
-             File xmlFile =  new File("testContextFile.xml");
-
-             saxParser.parse(xmlFile,handler);
-
-             //Get Employees list
-             List<BeanDefinition> beanDefinitionList = handler.getBeanDefinitionList();
-             //print employee information
-             for(BeanDefinition beanDefinition : beanDefinitionList)
-                 System.out.println(beanDefinition.toString());
-         } catch (ParserConfigurationException | SAXException | IOException e) {
-             e.printStackTrace();
-         }
-     }*/
  }

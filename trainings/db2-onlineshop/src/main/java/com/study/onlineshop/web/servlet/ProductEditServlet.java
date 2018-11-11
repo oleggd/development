@@ -4,6 +4,9 @@ import com.study.onlineshop.entity.Product;
 import com.study.onlineshop.entity.User;
 import com.study.onlineshop.service.ProductService;
 import com.study.onlineshop.service.SecurityService;
+import com.study.onlineshop.service.ServiceLocator;
+import com.study.onlineshop.service.impl.DefaultProductService;
+import com.study.onlineshop.service.impl.DefaultSecurityService;
 import com.study.onlineshop.web.templater.PageGenerator;
 
 import javax.servlet.ServletException;
@@ -22,7 +25,7 @@ import java.util.Map;
 
 public class ProductEditServlet extends HttpServlet {
 
-    private ProductService productService;
+    private ProductService  productService  = ServiceLocator.getService(ProductService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

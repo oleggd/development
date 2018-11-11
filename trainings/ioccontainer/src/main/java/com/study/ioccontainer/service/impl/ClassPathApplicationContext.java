@@ -25,7 +25,6 @@ public class ClassPathApplicationContext implements ApplicationContext {
 
         beanDefinitionReader = new XmlBeanDefinitionReader(beanFile);
         beanDefinitionList = beanDefinitionReader.readBeanDefinition();
-        Bean bean;
 
         // build beans list
         beanList = constructBeans(beanDefinitionList);

@@ -1,3 +1,4 @@
+/*
 package com.study.onlineshop;
 
 import com.study.onlineshop.dao.jdbc.JdbcProductDao;
@@ -105,3 +106,4 @@ public class Starter {
         server.start();
     }
 }
+*/

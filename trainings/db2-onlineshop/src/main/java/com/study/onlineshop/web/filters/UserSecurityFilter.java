@@ -2,6 +2,7 @@ package com.study.onlineshop.web.filters;
 
 import com.study.onlineshop.entity.Session;
 import com.study.onlineshop.service.SecurityService;
+import com.study.onlineshop.service.ServiceLocator;
 import com.study.onlineshop.service.impl.DefaultSecurityService;
 
 import javax.servlet.*;
@@ -11,11 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class UserSecurityFilter implements Filter {
-
-    private SecurityService securityService;
+    private FilterConfig filterConfig;
+    private SecurityService securityService = ServiceLocator.getService(DefaultSecurityService.class);
 
     public UserSecurityFilter(SecurityService defaultSecurityService) {
         this.securityService = defaultSecurityService;
+    }
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+
     }
 
     // chain of responsibility
@@ -51,9 +57,10 @@ public class UserSecurityFilter implements Filter {
 
     }
 
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
 
+    /*public void init(FilterConfig filterConfig) throws ServletException {
+        this.filterConfig = filterConfig;
+    }*/
+    public void init() throws ServletException {
     }
-
 }
